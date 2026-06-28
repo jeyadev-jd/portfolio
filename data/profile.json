@@ -1,0 +1,611 @@
+{
+  "name": {
+    "first": "Jeyadev",
+    "last": "R",
+    "full": "Jeyadev R"
+  },
+  "email": "jeyadev2006@gmail.com",
+  "tagline": "Aspiring AI Engineer building systems across machine learning, computer vision, and full-stack product, not just slides.",
+  "description": "B.Tech AI & Data Analytics student who builds real, working AI and full-stack systems spanning healthcare risk models, computer vision, retrieval-augmented generation, algorithmic trading, and production SaaS platforms.",
+  "roles": {
+    "short": "AI Engineer",
+    "detailed": "AI/ML Engineer · Full-Stack Developer · Applied Research"
+  },
+  "location": {
+    "based": "Chennai, India",
+    "availability": "Remote / Hybrid / On-site"
+  },
+  "education": {
+    "institution": "Sri Ramachandra Institute of Higher Education and Research",
+    "degree": "B.Tech, Artificial Intelligence and Data Analytics",
+    "period": "2024 to 2028"
+  },
+  "available": true,
+  "bio": "B.Tech student in AI and Data Analytics who learns by building. My work spans forecasting and risk models (air quality, mortality, cardiovascular risk), computer vision (number plate recognition, scene classification), NLP and RAG (a drug-food interaction classifier, a self-hosted RAG cluster), and applied finance (a commodity forecasting ensemble, a prediction-market trading bot). I also work as a full-stack developer, shipping production MERN and Next.js apps end to end, from UI to auth to deployment, and I prefer shipping a working version over polishing a slide. Outside of code, I am a Student Council Member at my college and currently interning across two cleantech companies.",
+  "stats": [
+    {
+      "value": "1+",
+      "label": "Years Experience"
+    },
+    {
+      "value": "26+",
+      "label": "Projects Built"
+    },
+    {
+      "value": "2",
+      "label": "Companies"
+    }
+  ],
+  "skills": [
+    "Python",
+    "TensorFlow",
+    "PyTorch",
+    "XGBoost",
+    "LightGBM",
+    "Scikit-learn",
+    "FastAPI",
+    "React",
+    "Next.js",
+    "Node.js",
+    "MongoDB",
+    "PostgreSQL",
+    "Docker",
+    "FAISS",
+    "Gemini API"
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "role": "Machine Learning Intern",
+      "company": "Sri Ramachandra Faculty of Engineering and Technology",
+      "companyShort": "SRFET",
+      "logo": "/assets/logo-srfet.png",
+      "image": "/assets/project-aerosight.png",
+      "link": "https://github.com/jeyadev-jd/AeroSight",
+      "type": "Internship",
+      "location": "Chennai, India",
+      "period": "May 2025",
+      "periodEnd": "Jul 2025",
+      "bullets": [
+        "Built AeroSight, a Prophet + XGBoost dual-model AQI/mortality forecasting toolkit with auto-generated PDF reports, placing 2nd at Research Day 2025."
+      ],
+      "desc": "Built AeroSight, an air quality analysis and forecasting toolkit combining Prophet and XGBoost dual-model forecasting to correlate pollution trends with public health/mortality data, with auto-generated multi-page PDF reports for monitoring stations. Presented the system at Research Day 2025, placing 2nd.",
+      "tech": [
+        "Python",
+        "XGBoost",
+        "Prophet",
+        "Scikit-learn",
+        "Data Analysis"
+      ],
+      "logoVersion": 2
+    },
+    {
+      "id": 2,
+      "role": "Full-Stack Developer (Intern)",
+      "company": "Aspiration Cleantech Ventures",
+      "companyShort": "ASPIRATION CLEANTECH",
+      "logo": "/assets/logo-aspiration-ventures.png",
+      "image": "/assets/project-aspiration.png",
+      "link": "https://aspcv.vercel.app/",
+      "type": "Internship",
+      "location": "Chennai, India",
+      "period": "Jan 2026",
+      "periodEnd": "Mar 2026",
+      "bullets": [
+        "Shipped a production MERN web app (React/TypeScript + Node/Express/MongoDB) with JWT auth and Cloudinary uploads."
+      ],
+      "desc": "Built and shipped the company's production MERN-stack web app for the cleantech/solar energy business, using a React/TypeScript frontend on Vite and a Node/Express/MongoDB backend with JWT authentication, Helmet security hardening, and Cloudinary-based image uploads, taking it from internal prototype to live production deployment.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "JWT"
+      ],
+      "logoVersion": 2
+    },
+    {
+      "id": 3,
+      "role": "SAAS Developer (Intern)",
+      "company": "Aspiration Cleantech Ventures",
+      "companyShort": "ASPIRATION CLEANTECH",
+      "logo": "/assets/logo-aspiration-ventures.png",
+      "image": "/assets/project-aspcvcrm.png",
+      "link": "https://github.com/jeyadev-jd/aspcv-crm",
+      "type": "Internship",
+      "location": "Chennai, India",
+      "period": "May 2026",
+      "periodEnd": "Present",
+      "bullets": [
+        "Building SaaS features and REST APIs for new product modules on the core MERN platform."
+      ],
+      "desc": "Promoted to build ASPCV CRM, a full-stack CRM extending the core MERN platform that covers the full customer lifecycle from lead to deal, project, installation, and support, plus HR/payroll/attendance, inventory, material requests, invoicing, and dynamic database-backed role-based access control.",
+      "tech": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "REST APIs"
+      ],
+      "logoVersion": 2
+    },
+    {
+      "id": 4,
+      "role": "Digital Marketing Intern",
+      "company": "Aspiration Cleantech Academy",
+      "companyShort": "ASPIRATION ACADEMY",
+      "logo": "/assets/logo-aspiration-academy.png",
+      "image": "/assets/project-academy.png",
+      "link": "https://aspcvacademy.com/",
+      "type": "Internship",
+      "location": "Chennai, India",
+      "period": "May 2026",
+      "periodEnd": "Present",
+      "bullets": [
+        "Built and deployed the academy's training website (Next.js + Express/MongoDB) on a purchased domain via Cloudflare; promoted webinars and HVAC/cleantech course content across Instagram, LinkedIn, Facebook, and YouTube."
+      ],
+      "desc": "Built and deployed Aspiration Cleantech Academy, a job-oriented training platform covering HVAC, entrepreneurship, digital marketing, and sales courses (Next.js frontend, Express/MongoDB backend), purchasing the domain and shipping it live on Cloudflare. Also planned and organized webinars, produced educational content for the platform's career tracks, and ran outreach campaigns across Instagram, LinkedIn, Facebook, and YouTube to grow webinar attendance and enrollment.",
+      "tech": [
+        "Next.js",
+        "Cloudflare",
+        "Content Strategy",
+        "Digital Marketing"
+      ],
+      "logoVersion": 2
+    },
+    {
+      "id": 5,
+      "role": "Student Council Member",
+      "company": "Sri Ramachandra Institute of Higher Education and Research",
+      "companyShort": "SRIHER",
+      "logo": "/assets/logo-srfet.png",
+      "logoVersion": 2,
+      "image": "/assets/student-council.png",
+      "type": "Leadership",
+      "location": "Chennai, India",
+      "period": "Jul 2026",
+      "periodEnd": "Present",
+      "bullets": [
+        "Representing students on the council, coordinating with faculty on campus initiatives and student affairs."
+      ],
+      "desc": "Student Council Member at SRIHER, representing student interests and coordinating with faculty on campus initiatives, events, and student affairs.",
+      "tech": [
+        "Leadership",
+        "Event Coordination"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": 17,
+      "title": "ASPCV CRM",
+      "subtitle": "Full-Stack CRM for a Cleantech Company",
+      "type": "Full-Stack / SaaS",
+      "link": "https://github.com/jeyadev-jd/aspcv-crm",
+      "image": "/assets/project-aspcvcrm.png",
+      "imgVersion": 1,
+      "tech": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "Prisma",
+        "PostgreSQL"
+      ],
+      "desc": "Full-stack CRM covering the full customer lifecycle from lead to deal, project, installation, and support, plus HR/payroll/attendance, inventory, material requests, invoicing, and dynamic database-backed role-based access control."
+    },
+    {
+      "id": 24,
+      "title": "sret-rag",
+      "subtitle": "Self-Hosted RAG on a 4-PC LAN Cluster",
+      "type": "AI / Infrastructure",
+      "link": "https://github.com/jeyadev-jd/sret-rag",
+      "image": "/assets/project-sretrag.png",
+      "imgVersion": 1,
+      "tech": [
+        "FastAPI",
+        "FAISS",
+        "llama.cpp",
+        "Qwen2.5",
+        "SQLite",
+        "sentence-transformers"
+      ],
+      "desc": "Built for offline AI access at college with zero cloud dependency. Fully offline, self-hosted Retrieval-Augmented Generation system distributed across 4 budget PCs on a LAN: a FastAPI gateway, dedicated embedder, FAISS vector index, and a llama.cpp/Qwen2.5 LLM node. ChatGPT-style UI, cited answers, embed caching, doc dedup, and session-based auth."
+    },
+    {
+      "id": 18,
+      "title": "PolyBot",
+      "subtitle": "Autonomous Prediction-Market Trading Engine",
+      "type": "AI / Trading",
+      "link": "https://github.com/jeyadev-jd/polybot-prediction-arbitrage",
+      "image": "/assets/project-polybot.png",
+      "imgVersion": 1,
+      "tech": [
+        "Python",
+        "FastAPI",
+        "Web3",
+        "Redis",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "desc": "Autonomous trading engine for Polymarket prediction markets, with live order book/price ingestion, mispricing/momentum/news strategy scoring, on-chain execution via Web3, a risk management core, and a control-panel dashboard for monitoring and steering the bot."
+    },
+    {
+      "id": 3,
+      "title": "AbsorbAI",
+      "subtitle": "Clinical Pharmacokinetic Decision-Support Platform",
+      "type": "AI / Healthcare",
+      "link": "https://github.com/jeyadev-jd/AbsorbAI",
+      "image": "/assets/project-absorbai.png",
+      "tech": [
+        "Python",
+        "Django",
+        "NetworkX",
+        "Gemma 1.5B"
+      ],
+      "desc": "Clinical decision-support platform simulating personalized drug behavior across ~45 drugs for doctor and patient roles. Features a 10-layer PK/PD engine, Monte Carlo uncertainty quantification, Bayesian updates, a pharmacological knowledge graph, and Gemma 1.5B LLM integration."
+    },
+    {
+      "id": 2,
+      "title": "Pollumap V3",
+      "subtitle": "Real-Time Air Quality Dashboard",
+      "type": "Full-Stack / Environmental",
+      "link": "https://github.com/jeyadev-jd/Pollumap-V3",
+      "image": "/assets/project-pollumap.png",
+      "imgVersion": 2,
+      "tech": [
+        "React",
+        "Vite",
+        "Flask",
+        "MongoDB",
+        "XGBoost",
+        "Leaflet"
+      ],
+      "desc": "Full-stack air quality dashboard for Chennai with live AQI charts, an interactive Leaflet map, XGBoost-powered 24-hour forecasts, an A* 'Healthy Routing' algorithm for least-polluted paths, source-apportionment breakdowns, and an IoT sensor dashboard."
+    },
+    {
+      "id": 22,
+      "title": "Market Oracle",
+      "subtitle": "Commodity Price Forecasting Ensemble",
+      "type": "AI / Finance",
+      "link": "https://github.com/jeyadev-jd/market-oracle",
+      "image": "/assets/project-marketoracle.png",
+      "imgVersion": 2,
+      "tech": [
+        "PyTorch",
+        "NeuralProphet",
+        "Chronos",
+        "Transformers",
+        "NetworkX"
+      ],
+      "desc": "Commodity price prediction pipeline for the Mitsui Commodity Prediction Challenge, combining a 9-model ensemble (Chronos, NeuralProphet, NeuralCDE, Mixture-of-Experts, Temporal Graph Attention, Granger causality, regime detection) via a Bayesian meta-ensemble with confidence intervals."
+    },
+    {
+      "id": 16,
+      "title": "EcoSynth",
+      "subtitle": "Neuro-Symbolic Green Retrosynthesis Planner",
+      "type": "AI / Chemistry",
+      "link": "https://github.com/jeyadev-jd/Ecosynth",
+      "image": "/assets/project-ecosynth.png",
+      "imgVersion": 1,
+      "tech": [
+        "Python",
+        "FastAPI",
+        "ChromaDB",
+        "React",
+        "ChemBERTa"
+      ],
+      "desc": "AI-assisted retrosynthesis planner combining symbolic chemistry rules, RAG over literature/reaction data, and a green-chemistry scorer to propose, validate, and rank synthesis routes, with built-in hallucination detection and a React UI for exploring reasoning traces."
+    },
+    {
+      "id": 7,
+      "title": "HyperlocalAQ",
+      "subtitle": "Multi-Source Air Quality Modeling for Chennai",
+      "type": "AI / Environmental",
+      "link": "https://github.com/jeyadev-jd/HyperlocalAQ",
+      "image": "/assets/project-hyperlocalaq.png",
+      "imgVersion": 2,
+      "tech": [
+        "Python",
+        "Folium",
+        "IDW Modeling"
+      ],
+      "desc": "High-resolution air quality modeling framework integrating 7 APIs (WAQI, NASA FIRMS, Open-Meteo, TomTom, OSM, CAMS, OpenFDA) with hybrid IDW modeling, fire-impact and traffic adjustments, visualized on an interactive Folium map."
+    },
+    {
+      "id": 4,
+      "title": "Aspiration Cleantech Ventures",
+      "subtitle": "MERN Web Platform for a Solar Energy Company",
+      "type": "Full-Stack / SaaS",
+      "link": "https://aspcv.vercel.app/",
+      "image": "/assets/project-aspiration.png",
+      "tech": [
+        "React",
+        "Vite",
+        "TypeScript",
+        "Node.js",
+        "Express",
+        "MongoDB"
+      ],
+      "desc": "Production MERN-stack web app built during a full-stack internship for a cleantech/solar energy company. JWT authentication, Helmet security hardening, and Cloudinary-based image uploads."
+    },
+    {
+      "id": 26,
+      "title": "sret-noticeboard",
+      "subtitle": "College Notice Board with Admin Panel & Calendar",
+      "type": "Full-Stack / EdTech",
+      "link": "https://github.com/jeyadev-jd/sret-noticeboard",
+      "image": "/assets/project-noticeboard.png",
+      "imgVersion": 1,
+      "tech": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "JWT",
+        "Multer",
+        "FullCalendar"
+      ],
+      "desc": "Built for my college's notice board system. Role-based auth (student/faculty/admin), an admin dashboard with usage stats, image-attached notices, and a FullCalendar-driven event calendar. Node/Express/MongoDB backend with JWT auth and Multer-based image uploads."
+    },
+    {
+      "id": 19,
+      "title": "Cardio Disease Detection Engine",
+      "subtitle": "Cardiovascular Risk Dashboard + API",
+      "type": "AI / Healthcare",
+      "link": "https://github.com/jeyadev-jd/cardio-disease-detection-engine",
+      "image": "/assets/project-cardio.png",
+      "imgVersion": 1,
+      "tech": [
+        "Python",
+        "Streamlit",
+        "Flask",
+        "XGBoost",
+        "LightGBM",
+        "CatBoost"
+      ],
+      "desc": "ML system predicting cardiovascular disease risk (High/Low) from patient clinical and lifestyle data. Streamlit dashboard and Flask API backed by a tuned model zoo (Logistic Regression through stacking/voting ensembles), with the best model auto-selected for production."
+    },
+    {
+      "id": 6,
+      "title": "AeroSight",
+      "subtitle": "Air Quality Forecasting & Health Reporting Toolkit",
+      "type": "AI / Environmental",
+      "link": "https://github.com/jeyadev-jd/AeroSight",
+      "image": "/assets/project-aerosight.png",
+      "imgVersion": 2,
+      "tech": [
+        "Python",
+        "Prophet",
+        "XGBoost",
+        "Open-Meteo"
+      ],
+      "desc": "Air quality analysis and forecasting toolkit combining Prophet and XGBoost dual-model forecasting, correlating pollution with mortality data, and auto-generating multi-page PDF reports for monitoring stations."
+    },
+    {
+      "id": 8,
+      "title": "AI Drug-Food Interactions",
+      "subtitle": "NLP-Powered Interaction Classifier",
+      "type": "AI / Healthcare",
+      "link": "https://github.com/jeyadev-jd/ai-drug-food-interactions",
+      "image": "/assets/project-drugfood.png",
+      "imgVersion": 2,
+      "tech": [
+        "Python",
+        "Streamlit",
+        "Scikit-learn",
+        "TF-IDF"
+      ],
+      "desc": "NLP + ML web app classifying drug-food interactions into 6 categories using TF-IDF vectorization and ensemble models (99.2% accuracy), with semantic search and a generated knowledge graph."
+    },
+    {
+      "id": 21,
+      "title": "Intel Scene Classification",
+      "subtitle": "CNN vs VGG16 vs Bagged Ensemble",
+      "type": "AI / Computer Vision",
+      "link": "https://github.com/jeyadev-jd/intel-scene-classification",
+      "image": "/assets/project-intel.png",
+      "imgVersion": 1,
+      "tech": [
+        "TensorFlow",
+        "Keras",
+        "scikit-learn",
+        "Grad-CAM"
+      ],
+      "desc": "Image classification on the Intel Image Classification dataset (6 scene classes), comparing a baseline CNN, fine-tuned VGG16 transfer learning, and a bagged-ensemble of Dense heads (~93% test accuracy), with Grad-CAM visualizations and misclassification analysis."
+    },
+    {
+      "id": 25,
+      "title": "ANPR-YOLOv4",
+      "subtitle": "Automatic Number Plate Recognition",
+      "type": "AI / Computer Vision",
+      "link": "https://github.com/jeyadev-jd/ANPR-YOLOv4",
+      "image": "/assets/project-anpr.png",
+      "imgVersion": 2,
+      "tech": [
+        "YOLOv4",
+        "Darknet",
+        "OpenCV",
+        "Python"
+      ],
+      "desc": "Automatic Number Plate Recognition system using a custom-trained YOLOv4 detector for cars, bikes, and autos. Custom-labeled dataset, Darknet training pipeline, and inference notebook for detecting vehicles and localizing their number plates."
+    },
+    {
+      "id": 20,
+      "title": "Cardiovascular Risk Prediction",
+      "subtitle": "ML Pipeline for Patient Health Data",
+      "type": "AI / Healthcare",
+      "link": "https://github.com/jeyadev-jd/cardiovascular-risk-prediction",
+      "image": "/assets/project-cardiorisk.png",
+      "imgVersion": 2,
+      "tech": [
+        "Python",
+        "scikit-learn",
+        "XGBoost",
+        "LightGBM",
+        "CatBoost",
+        "TensorFlow"
+      ],
+      "desc": "End-to-end ML pipeline predicting cardiovascular disease risk from patient health data. Engineered features (BMI, MAP, pulse pressure, hypertension flag, heuristic risk score) feed baseline and tree-based models, evaluated on accuracy, precision, recall, F1, and ROC-AUC."
+    },
+    {
+      "id": 23,
+      "title": "T20 Fantasy Impact Model",
+      "subtitle": "LightGBM Fantasy Team Optimizer",
+      "type": "AI / Sports Analytics",
+      "link": "https://github.com/jeyadev-jd/t20-fantasy-impact-model",
+      "image": "/assets/project-t20fantasy.png",
+      "imgVersion": 2,
+      "tech": [
+        "Python",
+        "LightGBM",
+        "pandas",
+        "joblib"
+      ],
+      "desc": "ML-driven T20 cricket fantasy team optimizer. Dual LightGBM models (mean + P90 quantile) trained on ball-by-ball data predict batting runs and bowling impact; a match-day engine then builds an optimal Dream11-style XI under credit/role constraints with captain/vice-captain selection."
+    },
+    {
+      "id": 5,
+      "title": "Aspiration Cleantech Academy",
+      "subtitle": "Job-Oriented Training Platform",
+      "type": "Full-Stack / EdTech",
+      "link": "https://aspcvacademy.com/",
+      "image": "/assets/project-academy.png",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Express",
+        "MongoDB"
+      ],
+      "desc": "Job-oriented training platform covering HVAC, entrepreneurship, digital marketing, and sales courses. Next.js frontend with an Express/MongoDB backend, built during a digital marketing internship landing-page build."
+    },
+    {
+      "id": 1,
+      "title": "VoteIQ",
+      "subtitle": "AI-Powered Civic Education App",
+      "type": "AI / Civic Tech",
+      "link": "https://vote-iq-five.vercel.app/",
+      "image": "/assets/project-voteiq.png",
+      "imgVersion": 2,
+      "tech": [
+        "Flask",
+        "Vanilla JS",
+        "Gemini 2.0 Flash",
+        "Google OAuth"
+      ],
+      "desc": "AI-powered civic education assistant helping first-time Indian voters understand the election process. Built in 8 hours at Google's Prompt Wars, featuring a guided voter journey, myth-busting AI module, guarded Q&A assistant, civic maturity scoring, and a readiness quiz."
+    },
+    {
+      "id": 9,
+      "title": "Advanced CLI Web Scrapper",
+      "subtitle": "Full-Site Archiver Built on Playwright",
+      "type": "Tooling",
+      "link": "https://github.com/jeyadev-jd/Advanced-CLI-Web-Scrapper",
+      "image": "/assets/project-scrapper.png",
+      "imgVersion": 2,
+      "tech": [
+        "Python",
+        "Playwright",
+        "BeautifulSoup"
+      ],
+      "desc": "CLI tool to download full web pages with assets (CSS, JS, images, video) for offline archiving. Handles dynamic/JS-heavy pages, adjustable crawl depth, URL filtering, domain locking, and concurrent downloads."
+    },
+    {
+      "id": 15,
+      "title": "InstaAnalyzer",
+      "subtitle": "Follower/Following Analysis Script",
+      "type": "Tooling",
+      "link": "https://github.com/jeyadev-jd/InstaAnalyzer",
+      "image": "/assets/project-instaanalyzer.png",
+      "imgVersion": 2,
+      "tech": [
+        "Python",
+        "Instaloader",
+        "Rich"
+      ],
+      "desc": "Python script analyzing Instagram accounts to identify mutual followers and non-followbacks, using Instaloader for data and the Rich library for clean terminal output."
+    },
+    {
+      "id": 10,
+      "title": "Quantum Teleportation Simulation",
+      "subtitle": "Interactive Browser-Based Quantum Circuit Visualizer",
+      "type": "Education / Visualization",
+      "link": "https://jeyadev-jd.github.io/Quantum-Teleportation-Simulation/",
+      "image": "/assets/project-quantum.png",
+      "imgVersion": 2,
+      "tech": [
+        "JavaScript",
+        "Tailwind CSS",
+        "SVG"
+      ],
+      "desc": "Zero-dependency browser simulator visualizing the quantum teleportation protocol step-by-step, with selectable noise models, an animated quantum circuit, and real-time fidelity metrics."
+    },
+    {
+      "id": 11,
+      "title": "Sudoku Visualisation",
+      "subtitle": "Algorithm Comparison: Backtracking vs MRV",
+      "type": "Algorithms / Visualization",
+      "link": "https://github.com/jeyadev-jd/Sudoku-Visualisation",
+      "image": "/assets/project-sudoku.png",
+      "imgVersion": 2,
+      "tech": [
+        "C++",
+        "SFML"
+      ],
+      "desc": "Graphical Sudoku solver and visualizer built natively in C++ with SFML. Generates puzzles at three difficulty levels and runs a side-by-side timing comparison of Backtracking vs MRV-heuristic solving."
+    },
+    {
+      "id": 12,
+      "title": "Arduino Calc: Matrix Edition",
+      "subtitle": "Von Neumann CPU Concepts on Real Hardware",
+      "type": "Embedded / COA",
+      "link": "https://www.youtube.com/watch?v=08GiG0zbWGA",
+      "image": "/assets/project-arduino.png",
+      "imgVersion": 2,
+      "tech": [
+        "Arduino",
+        "Web Serial API",
+        "HTML/CSS"
+      ],
+      "desc": "Calculator built for a Computer Organization & Architecture course, mapping Von Neumann CPU concepts onto Arduino Uno hardware with a matrix-styled Web Serial interface that needs no Serial Monitor."
+    },
+    {
+      "id": 13,
+      "title": "Urban Farming Simulator",
+      "subtitle": "OOP Rooftop Farm Management Sim",
+      "type": "Academic / Java",
+      "link": "https://github.com/jeyadev-jd/Urban-Farming-Simulator",
+      "image": "/assets/project-urbanfarm.png",
+      "imgVersion": 2,
+      "tech": [
+        "Java",
+        "OOP"
+      ],
+      "desc": "Text-based rooftop urban farm management simulation modeling crop biology, seasonal weather, and market fluctuations using SOLID principles, encapsulation, and polymorphism. Built with a 3-person team."
+    },
+    {
+      "id": 14,
+      "title": "Crorepati Quiz Game",
+      "subtitle": "CLI Quiz Game Inspired by KBC",
+      "type": "Academic / Java",
+      "link": "https://github.com/jeyadev-jd/Crorepati-A-CLI-Based-Quiz-Game-Using-Java",
+      "image": "/assets/project-crorepati.png",
+      "imgVersion": 2,
+      "tech": [
+        "Java"
+      ],
+      "desc": "CLI-based quiz game inspired by 'Kaun Banega Crorepati', built in Java with lifelines and escalating prize levels."
+    }
+  ],
+  "publications": [],
+  "socials": [
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jeyadev-jd"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/r-jeyadev"
+    }
+  ]
+}
