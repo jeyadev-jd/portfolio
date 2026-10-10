@@ -9,8 +9,6 @@ import styles from '@/styles/pages/Content.module.css'
 
 const fullName = profile.name.full
 
-export const dynamicParams = false
-
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }))
 }
