@@ -20,7 +20,7 @@ export const metadata = {
     siteName: fullName,
     title: `${title} | ${fullName}`,
     description,
-    images: [{ url: '/me.jpg', width: 800, height: 800, alt: fullName }],
+    images: [{ url: '/jeyadev-r.jpg', width: 800, height: 800, alt: `${fullName}, ${profile.roles.short}` }],
   },
 }
 
@@ -48,7 +48,7 @@ export default function AboutPage() {
 
       <div className={styles.intro}>
         <div className={styles.portrait}>
-          <Image src="/me.jpg" alt={fullName} fill priority sizes="176px" />
+          <Image src="/jeyadev-r.jpg" alt={`${fullName}, ${profile.roles.short} from ${profile.location.based}`} fill priority sizes="176px" />
         </div>
         <div>
           <p className={styles.eyebrow}>{profile.roles.detailed}</p>
