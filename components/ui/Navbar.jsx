@@ -18,11 +18,11 @@ const WORK_EXP_IDX   = 3 + PROJECT_SLIDES
 const FOOTER_IDX     = WORK_EXP_IDX + 3 // pub/interstitial/footer wrapper = 3 steps
 
 const NAV_ITEMS = [
-  { label: 'Home',       idx: 0 },
-  { label: 'About',      idx: 2 },
-  { label: 'Projects',   idx: 3 },
-  { label: 'Experience', idx: WORK_EXP_IDX },
-  { label: 'Contact',    idx: FOOTER_IDX },
+  { label: 'Home',       idx: 0,            href: '/' },
+  { label: 'About',      idx: 2,            href: '/about' },
+  { label: 'Projects',   idx: 3,            href: '/projects' },
+  { label: 'Experience', idx: WORK_EXP_IDX, href: '/about#experience' },
+  { label: 'Contact',    idx: FOOTER_IDX,   href: '/about#contact' },
 ]
 
 function getIST() {
@@ -99,11 +99,15 @@ export default function Navbar() {
 
         <NavigationMenu className={styles.navMenu}>
           <NavigationMenuList className="flex gap-6">
-            {NAV_ITEMS.map(({ label, idx }) => (
+            {NAV_ITEMS.map(({ label, idx, href }) => (
               <NavigationMenuItem key={label}>
+                {/* href gives crawlers a real link to the matching sub-page;
+                    on the home page the click scrolls to the section instead. */}
                 <NavigationMenuLink
+                  href={href}
                   className={styles.navLink}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault()
                     const scroller = document.querySelector('main')
                     if (scroller) gsap.to(scroller, {
                       scrollTop: idx * window.innerHeight,

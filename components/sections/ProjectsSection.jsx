@@ -2,11 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import profile from '@/data/profile.json'
+import { slugify } from '@/lib/projects'
 import styles from '@/styles/sections/ProjectsSection.module.css'
 
 const PROJECTS = profile.projects
+const pad = (n) => String(n).padStart(2, '0')
 
 export default function ProjectsSection() {
   const sectionRef  = useRef(null)
@@ -67,7 +70,7 @@ export default function ProjectsSection() {
           })
         }
 
-        if (counterRef.current) counterRef.current.textContent = `0${activeIdx + 1}`
+        if (counterRef.current) counterRef.current.textContent = pad(activeIdx + 1)
       },
     })
 
@@ -84,7 +87,7 @@ export default function ProjectsSection() {
           <div className={styles.counter}>
             <span ref={counterRef} className={styles.cCur}>01</span>
             <span className={styles.cSep}> / </span>
-            <span className={styles.cTot}>0{PROJECTS.length}</span>
+            <span className={styles.cTot}>{pad(PROJECTS.length)}</span>
           </div>
         </div>
 
@@ -115,7 +118,7 @@ export default function ProjectsSection() {
                 <div className={styles.slideVignette}      aria-hidden />
               </div>
 
-              <span className={styles.slideNum} aria-hidden>0{i + 1}</span>
+              <span className={styles.slideNum} aria-hidden>{pad(i + 1)}</span>
 
             </div>
           ))}
@@ -152,6 +155,27 @@ export default function ProjectsSection() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Full project list for search engines and screen readers. The slider
+            only renders the active slide's text, so this keeps every project's
+            title, description, stack and link in the HTML. Same content as the
+            slides, just not visually repeated. */}
+        <div className="sr-only">
+          <h2>Projects</h2>
+          <Link href="/projects">All projects</Link>
+          <ul>
+            {PROJECTS.map((proj) => (
+              <li key={proj.id}>
+                <h3>{proj.title}: {proj.subtitle}</h3>
+                <p>{proj.type}</p>
+                <p>{proj.desc}</p>
+                <p>Tech stack: {proj.tech.join(', ')}</p>
+                <Link href={`/projects/${slugify(proj.title)}`}>{proj.title} project details</Link>
+                <a href={proj.link}>{proj.title} source</a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Progress bar */}

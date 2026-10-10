@@ -28,7 +28,7 @@
       "label": "Years Experience"
     },
     {
-      "value": "26+",
+      "value": "31+",
       "label": "Projects Built"
     },
     {
@@ -177,6 +177,78 @@
     }
   ],
   "projects": [
+    {
+      "id": 27,
+      "title": "ScamShield",
+      "subtitle": "Explainable Scam SMS Detector for India",
+      "type": "AI / Security",
+      "link": "https://github.com/jeyadev-jd/ScamShield",
+      "image": "/assets/project-scamshield.png",
+      "imgVersion": 1,
+      "tech": [
+        "Python",
+        "scikit-learn",
+        "PyTorch",
+        "DistilBERT",
+        "FastAPI",
+        "React"
+      ],
+      "desc": "Explainable, obfuscation-robust scam SMS detector for Indian messages (KYC, UPI, courier, digital-arrest scams). Undoes tricks like '0TP' and 'v e r i f y', highlights the words behind each verdict, and checks links for look-alike bank domains. Of 8 benchmarked models, the deployed calibrated linear SVM reaches 0.97 F1, matching DistilBERT."
+    },
+    {
+      "id": 28,
+      "title": "PHYS-TRUST Lite",
+      "subtitle": "Trust-Adaptive Physics-Informed Air Quality Sensing",
+      "type": "AI / IoT",
+      "link": "https://github.com/jeyadev-jd/phys-trust-lite",
+      "image": "/assets/project-phystrust.png",
+      "imgVersion": 1,
+      "tech": [
+        "Arduino",
+        "PyTorch",
+        "FastAPI",
+        "React",
+        "WebSocket",
+        "Ollama"
+      ],
+      "desc": "Air quality estimation on one low-cost Arduino node (MQ135 + DHT11). A Kalman filter fuses sensor physics, room mass-balance physics and an LSTM-ensemble prior, weighting each by a live trust score, with a 90% conformal uncertainty band and fault detection. Live React dashboard, local Gemma 3 explanations, 9% lower error than fixed-weight fusion."
+    },
+    {
+      "id": 29,
+      "title": "Attendance ERP",
+      "subtitle": "Multi-Semester College Attendance System on the Edge",
+      "type": "Full-Stack / EdTech",
+      "link": "https://github.com/jeyadev-jd/attendance-erp",
+      "image": "/assets/project-attendanceerp.png",
+      "imgVersion": 1,
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Hono",
+        "Cloudflare Workers",
+        "D1",
+        "Prisma"
+      ],
+      "desc": "College attendance system built around real timetables: multi-hour labs marked once, partial exam days, one-off period swaps, and bunk detection. Mobile-first marking, timetable builder with conflict checks, a student planner that projects when attendance crosses the limit, and admin heatmaps with an audit log, all on Cloudflare Workers + D1."
+    },
+    {
+      "id": 30,
+      "title": "FRONTIER",
+      "subtitle": "Local AI Content Agent for a Discord Community",
+      "type": "AI / Automation",
+      "link": "https://github.com/jeyadev-jd/FRONTIER",
+      "image": "/assets/project-frontier.png",
+      "imgVersion": 1,
+      "tech": [
+        "Python",
+        "FastAPI",
+        "React",
+        "Ollama",
+        "discord.py",
+        "MCP"
+      ],
+      "desc": "AI agent for a student tech community Discord server. Discovers hackathons, research and AI news, drafts posts in the author's writing style with a local LLM (Ollama / LM Studio), routes them to the right channel, and publishes only after human approval via a React dashboard or Discord buttons. Ships an MCP server for other AI agents."
+    },
     {
       "id": 17,
       "title": "ASPCV CRM",
@@ -413,6 +485,22 @@
         "Grad-CAM"
       ],
       "desc": "Image classification on the Intel Image Classification dataset (6 scene classes), comparing a baseline CNN, fine-tuned VGG16 transfer learning, and a bagged-ensemble of Dense heads (~93% test accuracy), with Grad-CAM visualizations and misclassification analysis."
+    },
+    {
+      "id": 31,
+      "title": "GloVe from Scratch",
+      "subtitle": "Word Embeddings Trained on WikiText-2",
+      "type": "AI / NLP",
+      "link": "https://github.com/jeyadev-jd/glove-wikitext2",
+      "image": "/assets/project-glove.png",
+      "imgVersion": 1,
+      "tech": [
+        "Python",
+        "PyTorch",
+        "CUDA",
+        "NumPy"
+      ],
+      "desc": "GloVe word embeddings built from first principles: sparse co-occurrence matrix (120x smaller than dense), hand-derived gradients verified against autograd, and manual AdaGrad, with no autograd or torch.optim. Trained on WikiText-2 in 26 s on a 4 GB laptop GPU, with analogy tests, ablations and a comparison against official GloVe vectors."
     },
     {
       "id": 25,

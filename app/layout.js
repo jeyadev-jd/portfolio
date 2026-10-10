@@ -4,6 +4,7 @@ import Cursor from "@/components/ui/Cursor";
 import { SITE_URL } from '@/lib/siteConfig';
 import { Analytics } from "@vercel/analytics/next";
 import profile from "@/data/profile.json";
+import { projects } from '@/lib/projects';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -101,27 +102,92 @@ export const metadata = {
   manifest: '/favicons/manifest.webmanifest',
 };
 
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: fullName,
+      description: profile.description,
+      inLanguage: 'en',
+      publisher: { '@id': `${SITE_URL}/#person` },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${SITE_URL}/#profilepage`,
+      url: SITE_URL,
+      name: titleLine,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      mainEntity: { '@id': `${SITE_URL}/#person` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: fullName,
+      url: SITE_URL,
+      image: `${SITE_URL}/me.jpg`,
+      email: profile.email,
+      jobTitle: profile.roles.short,
+      description: profile.description,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Chennai',
+        addressCountry: 'IN',
+      },
+      alumniOf: {
+        '@type': 'CollegeOrUniversity',
+        name: profile.education.institution,
+      },
+      hasCredential: {
+        '@type': 'EducationalOccupationalCredential',
+        name: profile.education.degree,
+      },
+      knowsAbout: profile.skills,
+      sameAs: [
+        'https://github.com/jeyadev-jd',
+        'https://www.instagram.com/jeyadev_r',
+        'https://www.linkedin.com/in/r-jeyadev',
+      ],
+    },
+    {
+      '@type': 'ItemList',
+      '@id': `${SITE_URL}/#projects`,
+      name: `Projects by ${fullName}`,
+      numberOfItems: projects.length,
+      itemListElement: projects.map((proj, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'CreativeWork',
+          name: proj.title,
+          alternativeHeadline: proj.subtitle,
+          description: proj.desc,
+          url: `${SITE_URL}/projects/${proj.slug}`,
+          sameAs: proj.link,
+          image: `${SITE_URL}${proj.image}`,
+          keywords: proj.tech.join(', '),
+          author: { '@id': `${SITE_URL}/#person` },
+        },
+      })),
+    },
+  ],
+};
+
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${baloo.variable} ${dancing.variable} h-full antialiased`}
     >
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${baloo.variable} ${dancing.variable} h-full antialiased`}>
+      <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: fullName,
-              url: SITE_URL,
-              email: profile.email,
-              jobTitle: profile.roles.short,
-              sameAs: profile.socials.map((s) => s.href),
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+      </head>
+      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${baloo.variable} ${dancing.variable} h-full antialiased`}>
         <Cursor />
         {children}
         <Analytics />
