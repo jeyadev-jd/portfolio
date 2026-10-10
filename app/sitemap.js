@@ -1,8 +1,11 @@
 import { SITE_URL } from '@/lib/siteConfig'
 import { projects } from '@/lib/projects'
 
+// Fixed date, bumped when content changes. A lastmod that changes on every
+// request teaches Google to ignore it.
+const lastModified = '2026-10-10'
+
 export default function sitemap() {
-  const lastModified = new Date()
   return [
     { url: SITE_URL, lastModified, changeFrequency: 'monthly', priority: 1 },
     { url: `${SITE_URL}/about`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
@@ -12,7 +15,6 @@ export default function sitemap() {
       lastModified,
       changeFrequency: 'yearly',
       priority: 0.7,
-      images: [`${SITE_URL}${p.image}`],
     })),
   ]
 }
