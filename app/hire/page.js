@@ -38,15 +38,15 @@ const faqs = [
     a: `${profile.location.based}. Open to ${profile.location.availability} work.`,
   },
   {
-    q: 'What kind of work is he looking for?',
+    q: 'What kind of work is Jeyadev looking for?',
     a: `Internships and early-career roles in machine learning, applied AI and full-stack development. ${fullName} is studying ${profile.education.degree} at ${profile.education.institution} (${profile.education.period}).`,
   },
   {
-    q: 'What does he work with?',
+    q: 'What does Jeyadev work with?',
     a: `${profile.skills.join(', ')}.`,
   },
   {
-    q: 'How can I see his work?',
+    q: 'Where can I see the work?',
     a: `Every project has its own page with the problem, stack and source code link, listed on the projects page.`,
   },
 ]
@@ -64,6 +64,18 @@ export default function HirePage() {
           description,
           about: { '@id': `${SITE_URL}/#person` },
           isPartOf: { '@id': `${SITE_URL}/#website` },
+        }}
+      />
+
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map(({ q, a }) => ({
+            '@type': 'Question',
+            name: q,
+            acceptedAnswer: { '@type': 'Answer', text: a },
+          })),
         }}
       />
 

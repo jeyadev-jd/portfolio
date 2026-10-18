@@ -127,6 +127,7 @@ const personSchema = {
       '@type': 'Person',
       '@id': `${SITE_URL}/#person`,
       name: fullName,
+      alternateName: ['R Jeyadev', 'Jayadev R', 'R Jayadev'],
       url: SITE_URL,
       image: {
         '@type': 'ImageObject',
@@ -153,7 +154,8 @@ const personSchema = {
         '@type': 'EducationalOccupationalCredential',
         name: profile.education.degree,
       },
-      knowsAbout: profile.skills,
+      homeLocation: { '@type': 'City', name: 'Chennai' },
+      knowsAbout: [...profile.skills, 'Machine Learning', 'Computer Vision', 'Retrieval-Augmented Generation', 'Full-Stack Development'],
       sameAs: [
         'https://github.com/jeyadev-jd',
         'https://www.instagram.com/jeyadev_r',

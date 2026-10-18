@@ -61,6 +61,7 @@ export default function AboutPage() {
       <div className={styles.prose}><p>{profile.bio}</p></div>
 
       <dl className={styles.facts}>
+        <div className={styles.fact}><dt>Also written as</dt><dd>R Jeyadev, Jayadev R</dd></div>
         <div className={styles.fact}><dt>Based in</dt><dd>{profile.location.based}</dd></div>
         <div className={styles.fact}><dt>Work mode</dt><dd>{profile.location.availability}</dd></div>
         <div className={styles.fact}><dt>Education</dt><dd>{profile.education.degree}, {profile.education.institution} ({profile.education.period})</dd></div>

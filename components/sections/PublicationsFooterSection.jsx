@@ -567,6 +567,14 @@ export default function PublicationsFooterSection() {
                     </span>
                   ))}
                 </div>
+                <nav aria-label="Site pages" className={styles.footerLinks}>
+                  {[['About', '/about'], ['Projects', '/projects'], ['Hire', '/hire']].map(([label, href], i) => (
+                    <span key={href} className={styles.footerLinkWrap}>
+                      {i > 0 && <span className={styles.footerPipe}>|</span>}
+                      <a href={href} className={styles.footerLink}>{label}</a>
+                    </span>
+                  ))}
+                </nav>
                 <a href={`mailto:${profile.email}`} className={styles.footerMail}>
                   <FaEnvelope size={12} />
                   {profile.email}
