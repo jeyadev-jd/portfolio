@@ -29,7 +29,7 @@ const dancing = Dancing_Script({
 });
 
 const fullName = profile.name.full;
-const titleLine = `${fullName} | ${profile.roles.short}`;
+const titleLine = `${fullName} | ${profile.roles.short} & Full-Stack Developer in Chennai`;
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),

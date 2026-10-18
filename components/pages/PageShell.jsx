@@ -14,6 +14,7 @@ export default function PageShell({ children, breadcrumbs = [] }) {
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/projects">Projects</Link>
+          <Link href="/hire">Hire</Link>
           <a href={`mailto:${profile.email}`}>Contact</a>
         </nav>
       </header>
@@ -39,7 +40,7 @@ export default function PageShell({ children, breadcrumbs = [] }) {
         <p>
           <a href={`mailto:${profile.email}`}>{profile.email}</a>
           {profile.socials.map((s) => (
-            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
+            <a key={s.label} href={s.href} target="_blank" rel="me noopener noreferrer">{s.label}</a>
           ))}
         </p>
       </footer>

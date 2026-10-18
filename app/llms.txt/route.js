@@ -40,6 +40,7 @@ export function GET() {
     '',
     `- [Portfolio](${SITE_URL})`,
     `- [About](${SITE_URL}/about)`,
+    `- [Hire ${profile.name.full}](${SITE_URL}/hire)`,
     `- [All projects](${SITE_URL}/projects)`,
     ...profile.socials.map((s) => `- [${s.label}](${s.href})`),
     '',

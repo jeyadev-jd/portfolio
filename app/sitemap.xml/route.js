@@ -7,13 +7,14 @@ export const dynamic = 'force-static'
 
 // Fixed date, bumped when content changes. A lastmod that changes on every
 // request teaches Google to ignore it.
-const LASTMOD = '2026-10-10'
+const LASTMOD = '2026-10-18'
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 const pages = [
   { path: '', changefreq: 'monthly', priority: '1.0', images: ['/jeyadev-r.jpg', '/opengraph-image.png'] },
   { path: '/about', changefreq: 'monthly', priority: '0.9', images: ['/jeyadev-r.jpg'] },
+  { path: '/hire', changefreq: 'monthly', priority: '0.9', images: [] },
   { path: '/projects', changefreq: 'monthly', priority: '0.9', images: [] },
   ...projects.map((p) => ({
     path: `/projects/${p.slug}`,
