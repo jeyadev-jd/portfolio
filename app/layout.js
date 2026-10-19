@@ -155,7 +155,7 @@ const personSchema = {
         name: profile.education.degree,
       },
       homeLocation: { '@type': 'City', name: 'Chennai' },
-      knowsAbout: [...profile.skills, 'Machine Learning', 'Computer Vision', 'Retrieval-Augmented Generation', 'Full-Stack Development'],
+      knowsAbout: [...profile.skills, 'Machine Learning', 'Air Quality Forecasting', 'Computer Vision', 'Retrieval-Augmented Generation', 'Full-Stack Development'],
       sameAs: [
         'https://github.com/jeyadev-jd',
         'https://www.instagram.com/jeyadev_r',

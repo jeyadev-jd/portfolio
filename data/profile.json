@@ -67,7 +67,7 @@
       "period": "May 2025",
       "periodEnd": "Jul 2025",
       "bullets": [
-        "Built AeroSight, a Prophet + XGBoost dual-model AQI/mortality forecasting toolkit with auto-generated PDF reports, placing 2nd at Research Day 2025."
+        "Built AeroSight, a Prophet + XGBoost dual-model air quality and mortality forecasting toolkit with auto-generated PDF reports, placing 2nd at Research Day 2025."
       ],
       "desc": "Built AeroSight, an air quality analysis and forecasting toolkit combining Prophet and XGBoost dual-model forecasting to correlate pollution trends with public health/mortality data, with auto-generated multi-page PDF reports for monitoring stations. Presented the system at Research Day 2025, placing 2nd.",
       "tech": [
