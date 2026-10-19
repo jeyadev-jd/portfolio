@@ -2,3 +2,15 @@
 # https://opennext.js.org/cloudflare/caching#static-assets-caching
 /_next/static/*
   Cache-Control: public,max-age=31536000,immutable
+
+/assets/*
+  Cache-Control: public,max-age=2592000
+
+/favicons/*
+  Cache-Control: public,max-age=2592000
+
+/jeyadev-r.jpg
+  Cache-Control: public,max-age=2592000
+
+/me.jpg
+  Cache-Control: public,max-age=2592000
