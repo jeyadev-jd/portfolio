@@ -1,5 +1,6 @@
 import { SITE_URL } from '@/lib/siteConfig'
 import { projects } from '@/lib/projects'
+import { articles } from '@/lib/articles'
 
 // Hand-written so image entries come after the core <url> elements, as the
 // sitemap 0.9 schema requires (Next's built-in sitemap puts them first).
@@ -16,6 +17,10 @@ const pages = [
   { path: '/about', changefreq: 'monthly', priority: '0.9', images: ['/jeyadev-r.jpg'] },
   { path: '/hire', changefreq: 'monthly', priority: '0.9', images: [] },
   { path: '/projects', changefreq: 'monthly', priority: '0.9', images: [] },
+  { path: '/linkedin', changefreq: 'monthly', priority: '0.7', images: [] },
+  { path: '/videos', changefreq: 'monthly', priority: '0.7', images: [] },
+  { path: '/writing', changefreq: 'monthly', priority: '0.8', images: [] },
+  ...articles.map((a) => ({ path: `/writing/${a.slug}`, changefreq: 'yearly', priority: '0.8', images: [] })),
   ...projects.map((p) => ({
     path: `/projects/${p.slug}`,
     changefreq: 'yearly',

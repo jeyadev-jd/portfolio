@@ -160,7 +160,9 @@ const personSchema = {
         'https://github.com/jeyadev-jd',
         'https://www.instagram.com/jeyadev_r',
         'https://www.linkedin.com/in/r-jeyadev',
+        'https://www.youtube.com/@jeyadev_r',
       ],
+      award: ['2nd place, Research Day 2025 (air quality forecasting and reporting system)', 'Rank 193, PromptWars Virtual Challenge'],
     },
     {
       '@type': 'ItemList',

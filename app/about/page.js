@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { SITE_URL } from '@/lib/siteConfig'
 import profile from '@/data/profile.json'
 import { projects } from '@/lib/projects'
+import { highlights } from '@/lib/highlights'
 import PageShell, { JsonLd, breadcrumbSchema } from '@/components/pages/PageShell'
 import styles from '@/styles/pages/Content.module.css'
 
@@ -81,6 +82,13 @@ export default function AboutPage() {
           </li>
         ))}
       </ol>
+
+      <h2 className={styles.h2} id="highlights">Highlights and community</h2>
+      <ul className={styles.prose}>
+        {highlights.map((h) => (
+          <li key={h.title}><strong>{h.title}.</strong> {h.detail}</li>
+        ))}
+      </ul>
 
       <h2 className={styles.h2}>Skills</h2>
       <ul className={styles.tags}>

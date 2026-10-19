@@ -1,6 +1,10 @@
 import { SITE_URL } from '@/lib/siteConfig'
 import profile from '@/data/profile.json'
 import { projects } from '@/lib/projects'
+import { articles } from '@/lib/articles'
+import { videos, CHANNEL_URL } from '@/lib/videos'
+import { highlights } from '@/lib/highlights'
+import { posts, certifications, postUrl } from '@/lib/linkedin'
 
 // Plain-text summary for AI assistants and LLM crawlers (llmstxt.org).
 // Built from profile.json so it never drifts from the site.
@@ -35,6 +39,27 @@ export function GET() {
     ...projects.map(
       (p) => `- [${p.title}](${SITE_URL}/projects/${p.slug}): ${p.subtitle}. ${p.desc} Stack: ${p.tech.join(', ')}. Source: ${p.link}`
     ),
+    '',
+    '## Writing',
+    '',
+    ...articles.map((a) => `- [${a.title}](${SITE_URL}/writing/${a.slug}): ${a.description}`),
+    '',
+    '## Highlights',
+    '',
+    ...highlights.map((h) => `- ${h.title}: ${h.detail}`),
+    '',
+    '## Videos',
+    '',
+    ...videos.map((v) => `- [${v.title}](https://www.youtube.com/watch?v=${v.id}): ${v.about}`),
+    `- [YouTube channel](${CHANNEL_URL})`,
+    '',
+    '## LinkedIn posts',
+    '',
+    ...posts.map((p) => `- [${p.title}](${postUrl(p.urn)}) (${p.date}): ${p.summary}`),
+    '',
+    '## Certifications',
+    '',
+    ...certifications.map((c) => `- ${c.name}, ${c.issuer} (${c.date.slice(0, 7)})`),
     '',
     '## Links',
     '',

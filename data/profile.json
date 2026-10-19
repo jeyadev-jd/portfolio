@@ -683,6 +683,54 @@
         "Java"
       ],
       "desc": "CLI-based quiz game inspired by 'Kaun Banega Crorepati', built in Java with lifelines and escalating prize levels."
+    },
+    {
+      "id": 32,
+      "title": "StyleGAN Exploration",
+      "subtitle": "Style-Based GAN in TensorFlow/Keras on CIFAR-10",
+      "type": "AI / Deep Learning",
+      "link": "https://github.com/jeyadev-jd/StyleGAN-exploration",
+      "image": "/opengraph-image.png",
+      "imgVersion": 1,
+      "tech": [
+        "Python",
+        "TensorFlow",
+        "Keras",
+        "Jupyter"
+      ],
+      "desc": "Compact StyleGAN implementation in TensorFlow/Keras for image generation on CIFAR-10, in a single Jupyter notebook. An 8-layer mapping network and AdaIN style modulation drive synthesis, with style mixing and latent interpolation experiments. An educational implementation, not a reproduction of StyleGAN2 or StyleGAN3."
+    },
+    {
+      "id": 33,
+      "title": "Design and Analysis of Algorithms Study Guide",
+      "subtitle": "Student guide to 16 classic algorithms with C code",
+      "type": "Education / Algorithms",
+      "link": "https://github.com/jeyadev-jd/Design-And-Analysis-Of-Algorithms-DAA-",
+      "image": "/opengraph-image.png",
+      "imgVersion": 1,
+      "tech": [
+        "C",
+        "Algorithms",
+        "Data Structures"
+      ],
+      "desc": "PDF study guide and C implementations for 16 key algorithms and problems from Anany Levitin's Introduction to the Design and Analysis of Algorithms: searching, sorting, N-Queens, knapsack, Kruskal, Dijkstra, Graham scan, Miller-Rabin and LCS, organised into Basic, Moderate and High difficulty levels."
+    },
+    {
+      "id": 34,
+      "title": "ASPCV WordPress Site",
+      "subtitle": "Custom Astra child theme and mu-plugins for a cleantech company site",
+      "type": "Full-Stack / WordPress",
+      "link": "https://github.com/jeyadev-jd/aspcv-wordpress-site",
+      "image": "/opengraph-image.png",
+      "imgVersion": 1,
+      "tech": [
+        "WordPress",
+        "PHP",
+        "Astra",
+        "Elementor",
+        "LiteSpeed"
+      ],
+      "desc": "Source-controlled custom code for the corporate website of Aspiration Cleantech Ventures: an Astra child theme with custom page templates, plus must-use plugins for the navigation system and redirects, deployed on WordPress."
     }
   ],
   "publications": [],
@@ -694,6 +742,10 @@
     {
       "label": "LinkedIn",
       "href": "https://www.linkedin.com/in/r-jeyadev"
+    },
+    {
+      "label": "YouTube",
+      "href": "https://www.youtube.com/@jeyadev_r"
     }
   ]
 }

@@ -14,6 +14,9 @@ export default function PageShell({ children, breadcrumbs = [] }) {
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/projects">Projects</Link>
+          <Link href="/writing">Writing</Link>
+          <Link href="/videos">Videos</Link>
+          <Link href="/linkedin">LinkedIn</Link>
           <Link href="/hire">Hire</Link>
           <a href={`mailto:${profile.email}`}>Contact</a>
         </nav>

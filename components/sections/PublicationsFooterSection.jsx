@@ -568,7 +568,7 @@ export default function PublicationsFooterSection() {
                   ))}
                 </div>
                 <nav aria-label="Site pages" className={styles.footerLinks}>
-                  {[['About', '/about'], ['Projects', '/projects'], ['Hire', '/hire']].map(([label, href], i) => (
+                  {[['About', '/about'], ['Projects', '/projects'], ['Writing', '/writing'], ['Videos', '/videos'], ['LinkedIn', '/linkedin'], ['Hire', '/hire']].map(([label, href], i) => (
                     <span key={href} className={styles.footerLinkWrap}>
                       {i > 0 && <span className={styles.footerPipe}>|</span>}
                       <a href={href} className={styles.footerLink}>{label}</a>
