@@ -98,6 +98,11 @@ export default function HirePage() {
         <p><strong>Full-stack products.</strong> Production MERN and Next.js apps end to end: UI, auth, database and deployment.</p>
       </div>
 
+      <h2 className={styles.h2}>Production work</h2>
+      <div className={styles.prose}>
+        <p>During internships at Aspiration Cleantech I shipped <a href="https://aspcv.com" target="_blank" rel="noopener noreferrer">aspcv.com</a>, <a href="https://aspcvacademy.com" target="_blank" rel="noopener noreferrer">aspcvacademy.com</a> and a full-stack CRM and ERP system used in daily operations.</p>
+      </div>
+
       <h2 className={styles.h2}>AI and machine learning work</h2>
       <ul className={styles.grid}>
         {aiProjects.map((p) => (

@@ -83,6 +83,13 @@ export default function AboutPage() {
         ))}
       </ol>
 
+      <h2 className={styles.h2} id="shipped">Live sites I built</h2>
+      <ul className={styles.prose}>
+        <li><a href="https://aspcv.com" target="_blank" rel="noopener noreferrer">aspcv.com</a>: corporate website for Aspiration Cleantech Ventures, built on WordPress with a custom Astra child theme.</li>
+        <li><a href="https://aspcvacademy.com" target="_blank" rel="noopener noreferrer">aspcvacademy.com</a>: Aspiration Cleantech Academy training platform, built with React and deployed live.</li>
+        <li>A full-stack CRM and ERP system for Aspiration Cleantech, covering leads, projects, HR, payroll, inventory and invoicing.</li>
+      </ul>
+
       <h2 className={styles.h2} id="highlights">Highlights and community</h2>
       <ul className={styles.prose}>
         {highlights.map((h) => (

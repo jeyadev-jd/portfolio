@@ -4,6 +4,9 @@ import { notFound } from 'next/navigation'
 import { SITE_URL } from '@/lib/siteConfig'
 import profile from '@/data/profile.json'
 import { projects, getProject, category, snippet, isGithub } from '@/lib/projects'
+import { extras } from '@/lib/projectExtras'
+import { getArticle } from '@/lib/articles'
+import { videos as allVideos } from '@/lib/videos'
 import PageShell, { JsonLd, breadcrumbSchema } from '@/components/pages/PageShell'
 import styles from '@/styles/pages/Content.module.css'
 
@@ -54,6 +57,9 @@ export default async function ProjectPage({ params }) {
     { name: p.title, href: `/projects/${p.slug}` },
   ]
   const github = isGithub(p.link)
+  const extra = extras[p.slug] ?? {}
+  const relatedArticles = (extra.articles ?? []).map(getArticle).filter(Boolean)
+  const relatedVideos = (extra.videos ?? []).map((id) => allVideos.find((v) => v.id === id)).filter(Boolean)
   const related = projects
     .filter((o) => o.id !== p.id && category(o.type) === category(p.type))
     .slice(0, 3)
@@ -103,6 +109,31 @@ export default async function ProjectPage({ params }) {
 
         <h2 className={styles.h2}>About this project</h2>
         <div className={styles.prose}><p>{p.desc}</p></div>
+
+        {extra.problem && (
+          <>
+            <h2 className={styles.h2}>The problem</h2>
+            <div className={styles.prose}><p>{extra.problem}</p></div>
+            <h2 className={styles.h2}>Approach</h2>
+            <div className={styles.prose}><p>{extra.approach}</p></div>
+            <h2 className={styles.h2}>Results</h2>
+            <div className={styles.prose}><p>{extra.results}</p></div>
+          </>
+        )}
+
+        {(relatedArticles.length > 0 || relatedVideos.length > 0) && (
+          <>
+            <h2 className={styles.h2}>Related</h2>
+            <ul className={styles.prose}>
+              {relatedArticles.map((a) => (
+                <li key={a.slug}>Read: <Link href={`/writing/${a.slug}`}>{a.title}</Link></li>
+              ))}
+              {relatedVideos.map((v) => (
+                <li key={v.id}>Watch: <a href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer">{v.title}</a></li>
+              ))}
+            </ul>
+          </>
+        )}
 
         <dl className={styles.facts}>
           <div className={styles.fact}><dt>Category</dt><dd>{p.type}</dd></div>
