@@ -133,7 +133,27 @@ export default function Home() {
     let touchY = 0
     let scroller = null
     let freeScroll = false
-    function onTouchStart(e) { touchY = e.touches[0].clientY; scroller = innerScroller(e.target) }
+    // Overlay layers can sit above an inner scroll area (Work Experience on phones),
+    // so also look for a scrollable element under the finger. The list is built once.
+    let scrollables = null
+    function scrollerAt(x, y) {
+      if (!scrollables) {
+        scrollables = [...el.querySelectorAll('*')].filter(n => {
+          const oy = getComputedStyle(n).overflowY
+          return oy === 'auto' || oy === 'scroll'
+        })
+      }
+      return scrollables.find(n => {
+        if (n.scrollHeight <= n.clientHeight + 1) return false
+        const r = n.getBoundingClientRect()
+        return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom
+      }) || null
+    }
+    function onTouchStart(e) {
+      const t = e.touches[0]
+      touchY = t.clientY
+      scroller = innerScroller(e.target) || scrollerAt(t.clientX, t.clientY)
+    }
     function onTouchMove(e) {
       const dy = touchY - e.touches[0].clientY
       freeScroll = inZone(dy)
