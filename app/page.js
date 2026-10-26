@@ -87,11 +87,31 @@ export default function Home() {
       goTo(idxRef.current + (e.deltaY > 0 ? 1 : -1))
     }
 
+    // One swipe = one section on every touch device. Phones used native momentum
+    // scrolling, which flung past several sections in one swipe.
+    // Inner scroll areas (e.g. Work Experience on phones) scroll normally until their edge.
+    function scrollsInside(target, dy) {
+      for (let n = target; n && n !== el; n = n.parentElement) {
+        const oy = getComputedStyle(n).overflowY
+        if ((oy === 'auto' || oy === 'scroll') && n.scrollHeight > n.clientHeight + 1) {
+          const atTop    = n.scrollTop <= 0
+          const atBottom = n.scrollTop + n.clientHeight >= n.scrollHeight - 1
+          if ((dy > 0 && !atBottom) || (dy < 0 && !atTop)) return true
+        }
+      }
+      return false
+    }
+
     let touchY = 0
-    function onTouchStart(e) { touchY = e.touches[0].clientY }
+    let touchTarget = null
+    function onTouchStart(e) { touchY = e.touches[0].clientY; touchTarget = e.target }
+    function onTouchMove(e) {
+      const dy = touchY - e.touches[0].clientY
+      if (!scrollsInside(touchTarget, dy)) e.preventDefault()
+    }
     function onTouchEnd(e) {
       const dy = touchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 40 || busyRef.current) return
+      if (Math.abs(dy) < 40 || busyRef.current || scrollsInside(touchTarget, dy)) return
       goTo(idxRef.current + (dy > 0 ? 1 : -1))
     }
 
@@ -105,41 +125,21 @@ export default function Home() {
       fadeLoop(0, 0)
     }
 
-    const isMobile = window.matchMedia('(max-width: 767px)').matches
 
     el.addEventListener('wheel',  onWheel,  { passive: false })
     el.addEventListener('scroll', onScroll, { passive: true  })
 
-    let mTouchY = 0
-    function onMobileTouchStart(e) { mTouchY = e.touches[0].clientY }
-    function onMobileTouchEnd(e) {
-      const dy = mTouchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 40) return
-      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 8
-      const atTop    = el.scrollTop < 8
-      if (dy > 0 && atBottom) fadeLoop(0, 0)
-      if (dy < 0 && atTop)    fadeLoop(el.scrollHeight - el.clientHeight, TOTAL - 1)
-    }
-
-    if (!isMobile) {
-      el.addEventListener('touchstart', onTouchStart, { passive: true })
-      el.addEventListener('touchend',   onTouchEnd,   { passive: true })
-    } else {
-      el.addEventListener('touchstart', onMobileTouchStart, { passive: true })
-      el.addEventListener('touchend',   onMobileTouchEnd,   { passive: true })
-    }
+    el.addEventListener('touchstart', onTouchStart, { passive: true })
+    el.addEventListener('touchmove',  onTouchMove,  { passive: false })
+    el.addEventListener('touchend',   onTouchEnd,   { passive: true })
     window.addEventListener('footer-loop-back', onFooterLoop)
 
     return () => {
       el.removeEventListener('wheel',  onWheel)
       el.removeEventListener('scroll', onScroll)
-      if (!isMobile) {
-        el.removeEventListener('touchstart', onTouchStart)
-        el.removeEventListener('touchend',   onTouchEnd)
-      } else {
-        el.removeEventListener('touchstart', onMobileTouchStart)
-        el.removeEventListener('touchend',   onMobileTouchEnd)
-      }
+      el.removeEventListener('touchstart', onTouchStart)
+      el.removeEventListener('touchmove',  onTouchMove)
+      el.removeEventListener('touchend',   onTouchEnd)
       window.removeEventListener('footer-loop-back', onFooterLoop)
       tweenRef.current?.kill()
     }
