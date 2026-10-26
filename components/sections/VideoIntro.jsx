@@ -44,15 +44,8 @@ export default function VideoIntro() {
     setIsMobile(window.matchMedia('(max-width: 767px)').matches)
   }, [])
 
-  // Entrance animation
-  useEffect(() => {
-    const tl = gsap.timeline({ delay: 0.4 })
-    tl.fromTo(greetRef.current,  { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
-      .fromTo(nameRef.current,   { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' }, '-=0.2')
-      .fromTo(roleRef.current,   { opacity: 0, y:  20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4')
-      .fromTo(scrollRef.current, { opacity: 0 },         { opacity: 1, duration: 0.5 }, '-=0.1')
-    return () => tl.kill()
-  }, [])
+  // The landing text animates with CSS (see VideoIntro.module.css), so it is visible in the
+  // server HTML and does not wait for JavaScript. That is what the LCP element was waiting on.
 
   // Video fade-in - no auto-unmute; user must click the button
   useEffect(() => {
@@ -160,11 +153,11 @@ export default function VideoIntro() {
 
       {/* 5 - Landing text */}
       <div className={styles.heroContent}>
-        <p ref={greetRef} className={styles.eyebrow}>{content.site.tagline}</p>
-        <h1 ref={nameRef} className={styles.name}>
+        <p ref={greetRef} className={`${styles.eyebrow} ${styles.introDown}`}>{content.site.tagline}</p>
+        <h1 ref={nameRef} className={`${styles.name} ${styles.introRight}`}>
           {profile.name.full}
         </h1>
-        <p ref={roleRef} className={styles.role}>{profile.roles.detailed}</p>
+        <p ref={roleRef} className={`${styles.role} ${styles.introUp}`}>{profile.roles.detailed}</p>
       </div>
 
       {/* 6 - Paused overlay */}
@@ -222,7 +215,7 @@ export default function VideoIntro() {
       {/* 9 - Scroll cue */}
       <button
         ref={scrollRef}
-        className={styles.scrollCue}
+        className={`${styles.scrollCue} ${styles.introFade}`}
         onClick={scrollNext}
         aria-label="Scroll to next section"
       >

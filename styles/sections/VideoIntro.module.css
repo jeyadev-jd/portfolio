@@ -230,3 +230,19 @@
   .soundHint   { bottom: 4.5rem; right: 1rem; }
   .bgVideo     { display: none; }
 }
+
+/* Landing text entrance, in CSS so it renders without waiting for JavaScript.
+   Delays match the previous GSAP timeline (0.4s start, then staggered). */
+@keyframes introDown  { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
+@keyframes introRight { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: none; } }
+@keyframes introUp    { from { opacity: 0; transform: translateY(20px); }  to { opacity: 1; transform: none; } }
+@keyframes introFade  { from { opacity: 0; } to { opacity: 1; } }
+
+.introDown  { animation: introDown 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.4s both; }
+.introRight { animation: introRight 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both; }
+.introUp    { animation: introUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) 1.3s both; }
+.introFade  { animation: introFade 0.5s ease-out 1.8s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .introDown, .introRight, .introUp, .introFade { animation: none; }
+}
