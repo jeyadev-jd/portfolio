@@ -37,7 +37,6 @@ export default function VideoIntro() {
     const tl = gsap.timeline({ delay: 0.4 })
     tl.fromTo(greetRef.current,  { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
       .fromTo(nameRef.current,   { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' }, '-=0.2')
-      .fromTo(roleRef.current,   { opacity: 0, y:  20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4')
       .fromTo(scrollRef.current, { opacity: 0 },         { opacity: 1, duration: 0.5 }, '-=0.1')
     return () => tl.kill()
   }, [])
@@ -118,12 +117,7 @@ export default function VideoIntro() {
     <section className={styles.section}>
 
       {/* 1 - Blurred ambient background */}
-      <video
-        src="/assets/about-me-v2.mp4"
-        autoPlay muted playsInline
-        aria-hidden="true"
-        className={styles.bgVideo}
-      />
+      <div aria-hidden="true" className={styles.bgVideo} />
 
       {/* 2 - Main video: static `muted` attr so React never touches the DOM property on re-renders */}
       <video
