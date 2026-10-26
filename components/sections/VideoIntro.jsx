@@ -123,7 +123,7 @@ export default function VideoIntro() {
         ref={videoRef}
         data-testid="intro-video"
         src="/assets/about-me-v2.mp4"
-        poster="/assets/about-me-poster.webp"
+        poster="/assets/about-me-poster-v2.webp"
         muted playsInline
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
