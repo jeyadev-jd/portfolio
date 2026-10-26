@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { createPausableLoop } from '@/lib/pausableLoop'
 
 function makeSprite() {
   const c = document.createElement('canvas')
@@ -129,9 +130,7 @@ export default function HeroBackground() {
     timer.update(performance.now())
 
     // ── RAF ───────────────────────────────────────────────
-    let raf
     function tick() {
-      raf = requestAnimationFrame(tick)
       timer.update(performance.now())
       const dt      = Math.min(timer.getDelta(), 0.05)   // cap for tab-switch spikes
       const elapsed = timer.getElapsed()
@@ -160,7 +159,7 @@ export default function HeroBackground() {
 
       renderer.render(scene, camera)
     }
-    tick()
+    const stopLoop = createPausableLoop(mount, tick)
 
     // ── Resize ────────────────────────────────────────────
     const ro = new ResizeObserver(() => {
@@ -172,7 +171,7 @@ export default function HeroBackground() {
     ro.observe(mount)
 
     return () => {
-      cancelAnimationFrame(raf)
+      stopLoop()
       ro.disconnect()
       section?.removeEventListener('mousemove', onMove)
       g1.dispose(); g2.dispose()

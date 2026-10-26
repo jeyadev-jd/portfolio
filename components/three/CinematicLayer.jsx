@@ -1,5 +1,6 @@
 'use client'
 
+import { createPausableLoop } from '@/lib/pausableLoop'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
@@ -89,10 +90,7 @@ export default function CinematicLayer() {
     const timer = new THREE.Timer()
     timer.update(performance.now())
     let elapsed = 0
-    let animId
-
     const animate = (timestamp) => {
-      animId = requestAnimationFrame(animate)
       timer.update(timestamp)
       elapsed += timer.getDelta()
 
@@ -109,10 +107,10 @@ export default function CinematicLayer() {
 
       renderer.render(scene, camera)
     }
-    requestAnimationFrame(animate)
+    const stopLoop = createPausableLoop(canvas, animate)
 
     return () => {
-      cancelAnimationFrame(animId)
+      stopLoop()
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('resize', onResize)
       tex.dispose()

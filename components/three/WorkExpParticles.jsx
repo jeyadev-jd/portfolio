@@ -1,5 +1,6 @@
 'use client'
 
+import { createPausableLoop } from '@/lib/pausableLoop'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
@@ -73,10 +74,7 @@ export default function WorkExpParticles({ slideIdx }) {
     const lineSegs = new THREE.LineSegments(lineGeo, lineMat)
     scene.add(lineSegs)
 
-    let animId
     const animate = () => {
-      animId = requestAnimationFrame(animate)
-
       const pos = geometry.attributes.position.array
       for (let i = 0; i < COUNT; i++) {
         pos[i * 3]     += velocities[i].x
@@ -112,7 +110,7 @@ export default function WorkExpParticles({ slideIdx }) {
 
       renderer.render(scene, camera)
     }
-    animate()
+    const stopLoop = createPausableLoop(el, animate)
 
     stateRef.current = { geometry, material, velocities, renderer, scene, lineMat }
 
@@ -127,7 +125,7 @@ export default function WorkExpParticles({ slideIdx }) {
     window.addEventListener('resize', onResize)
 
     return () => {
-      cancelAnimationFrame(animId)
+      stopLoop()
       window.removeEventListener('resize', onResize)
       geometry.dispose()
       material.dispose()
