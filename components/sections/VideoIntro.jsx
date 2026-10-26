@@ -16,6 +16,18 @@ function scrollNext() {
 
 export default function VideoIntro() {
   const videoRef    = useRef(null)
+  const bgVideoRef  = useRef(null)
+
+  // Ambient background video starts after the first paint, so it never competes with the hero.
+  useEffect(() => {
+    const id = setTimeout(() => {
+      const v = bgVideoRef.current
+      if (!v) return
+      v.src = '/assets/about-me-v2.mp4'
+      v.play().catch(() => {})
+    }, 1200)
+    return () => clearTimeout(id)
+  }, [])
   const greetRef    = useRef(null)
   const nameRef     = useRef(null)
   const roleRef     = useRef(null)
@@ -119,8 +131,9 @@ export default function VideoIntro() {
 
       {/* 1 - Blurred ambient background */}
       <video
-        src="/assets/about-me.mp4"
-        autoPlay muted playsInline
+        ref={bgVideoRef}
+        muted playsInline
+        preload="none"
         aria-hidden="true"
         className={styles.bgVideo}
       />
@@ -129,7 +142,9 @@ export default function VideoIntro() {
       <video
         ref={videoRef}
         data-testid="intro-video"
-        src="/assets/about-me.mp4"
+        src="/assets/about-me-v2.mp4"
+        poster="/assets/about-me-poster.webp"
+        preload="metadata"
         muted playsInline
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, Fragment } from 'react'
+import { useEffect, useRef, useState, Fragment } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
@@ -28,7 +28,12 @@ function splitTagline(text, highlight) {
   }, [])
 }
 
+// Phones get a lighter particle field. Read only after mount, so SSR stays stable.
+const isMobile = () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+
 export default function HeroSection() {
+  // The 3D background mounts after the first paint, so the photo and text are never waiting on WebGL.
+  const [showBg, setShowBg] = useState(false)
   const sectionRef     = useRef(null)
   const greetRef       = useRef(null)
   const roleRef        = useRef(null)
@@ -48,6 +53,16 @@ export default function HeroSection() {
       gsap.to(scroller, { scrollTop: 3 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
     }
   }
+
+  useEffect(() => {
+    const run = () => setShowBg(true)
+    if ('requestIdleCallback' in window) {
+      const id = requestIdleCallback(run, { timeout: 1500 })
+      return () => cancelIdleCallback(id)
+    }
+    const id = setTimeout(run, 800)
+    return () => clearTimeout(id)
+  }, [])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -94,13 +109,13 @@ export default function HeroSection() {
   return (
     <section ref={sectionRef} className={styles.section}>
 
-      <HeroBackground />
+      {showBg && <HeroBackground lite={isMobile()} />}
 
       {/* Photo */}
       <div ref={photoRef} className={styles.photo}>
         <Image
-          src="/assets/hero.png" alt={profile.name.full}
-          fill priority quality={100}
+          src="/assets/hero-v2.webp" alt={profile.name.full}
+          fill priority
           sizes="(min-width: 768px) 55vw, 100vw"
           className={styles.photoImg}
         />
