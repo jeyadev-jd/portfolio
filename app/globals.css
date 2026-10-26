@@ -79,3 +79,11 @@ main { scrollbar-width: none; -ms-overflow-style: none; }
   html, body { height: 100svh !important; }
   main { height: 100svh !important; }
 }
+
+/* Phones: native finger-following scroll that settles on every section.
+   scroll-snap-stop: always prevents one flick from skipping sections.
+   Desktop and tablets keep the GSAP goTo() stepping in app/page.js. */
+@media (max-width: 767px) {
+  .homeScroller { scroll-snap-type: y mandatory; }
+  .homeScroller > div > * { scroll-snap-align: start; scroll-snap-stop: always; }
+}
