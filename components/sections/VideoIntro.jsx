@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { preload } from 'react-dom'
 import dynamic from 'next/dynamic'
 import { gsap } from '@/lib/gsap'
 import profile from '@/data/profile.json'
@@ -15,6 +16,8 @@ function scrollNext() {
 }
 
 export default function VideoIntro() {
+  // The poster is the first big paint on the page; fetch it before anything else.
+  preload('/assets/about-me-poster-v2.webp', { as: 'image', fetchPriority: 'high' })
   const videoRef    = useRef(null)
   const greetRef    = useRef(null)
   const nameRef     = useRef(null)
