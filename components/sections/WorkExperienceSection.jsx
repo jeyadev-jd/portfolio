@@ -104,7 +104,7 @@ export default function WorkExperienceSection() {
           src="/assets/work-experience.webp?v=2"
           alt=""
           fill
-          quality={100}
+          quality={80}
           sizes="100vw"
           className={styles.bgImgEl}
         />
@@ -159,7 +159,7 @@ export default function WorkExperienceSection() {
                           src={exp.image}
                           alt={exp.company}
                           fill
-                          quality={100}
+                          quality={80}
                           sizes="(max-width: 767px) 90vw, 420px"
                           className={styles.thumbImg}
                         />
@@ -170,7 +170,7 @@ export default function WorkExperienceSection() {
                           src={exp.image}
                           alt={exp.company}
                           fill
-                          quality={100}
+                          quality={80}
                           sizes="(max-width: 767px) 90vw, 420px"
                           className={styles.thumbImg}
                         />

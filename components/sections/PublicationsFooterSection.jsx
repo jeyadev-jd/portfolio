@@ -374,7 +374,7 @@ export default function PublicationsFooterSection() {
             src="/assets/footer-mobile.webp"
             alt=""
             fill
-            quality={100}
+            quality={80}
             className={styles.mobileFooterBgImg}
             sizes="100vw"
             priority={false}
@@ -390,7 +390,7 @@ export default function PublicationsFooterSection() {
             src="/assets/footer.webp"
             alt=""
             fill
-            quality={100}
+            quality={80}
             className={styles.imageEl}
             sizes="(max-width: 767px) 100vw, 50vw"
             priority={false}

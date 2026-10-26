@@ -108,7 +108,7 @@ export default function ProjectsSection() {
                   src={`${proj.image}?v=${proj.imgVersion ?? 1}`}
                   alt={proj.title}
                   fill
-                  quality={100}
+                  quality={80}
                   sizes="100vw"
                   className={styles.slideImg}
                   priority={i === 0}

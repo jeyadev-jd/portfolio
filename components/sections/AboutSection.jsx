@@ -90,7 +90,7 @@ export default function AboutSection() {
               src="/assets/about.webp"
               alt={profile.name.full}
               fill
-              quality={100}
+              quality={80}
               sizes="(min-width: 768px) 30vw, 100vw"
               className={styles.photoImg}
             />
