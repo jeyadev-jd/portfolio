@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, Fragment } from 'react'
+import { useEffect, useRef, useState, Fragment } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
@@ -29,6 +29,9 @@ function splitTagline(text, highlight) {
 }
 
 export default function HeroSection() {
+  // No 3D on phones: it was the main cost on mobile page speed.
+  const [show3D, setShow3D] = useState(false)
+  useEffect(() => { setShow3D(!window.matchMedia('(max-width: 767px)').matches) }, [])
   const sectionRef     = useRef(null)
   const greetRef       = useRef(null)
   const roleRef        = useRef(null)
@@ -94,7 +97,7 @@ export default function HeroSection() {
   return (
     <section ref={sectionRef} className={styles.section}>
 
-      <HeroBackground />
+      {show3D && <HeroBackground />}
 
       {/* Photo */}
       <div ref={photoRef} className={styles.photo}>

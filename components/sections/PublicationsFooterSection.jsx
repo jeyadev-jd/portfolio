@@ -3,7 +3,6 @@
 
 import { useEffect, useRef, Fragment } from 'react'
 import Image from 'next/image'
-import * as THREE from 'three'
 import { gsap } from '@/lib/gsap'
 import {
   FaGithub, FaLinkedinIn, FaMedium, FaInstagram, FaYoutube, FaEnvelope,
@@ -123,9 +122,12 @@ export default function PublicationsFooterSection() {
     const isMobile = window.innerWidth < 768
 
     let renderer, vidUni, rafId, videoPlaying = false
+    let disposed = false
     let onMouseMove = () => {}, onResize = () => {}
 
-    if (!isMobile && canvas && videoEl) {
+    // Three.js loads only on desktop, so phones never download it.
+    if (!isMobile && canvas && videoEl) import('three').then((THREE) => {
+      if (disposed) return
       // ── Three.js video setup ────────────────────────────────
       const W = sticky.offsetWidth
       const H = sticky.offsetHeight
@@ -198,7 +200,7 @@ export default function PublicationsFooterSection() {
         renderer.render(scene, camera)
       }
       tick()
-    }
+    })
 
     // ── Publication entry animation ───────────────────────────
     let pubAnimDone = false
@@ -288,7 +290,7 @@ export default function PublicationsFooterSection() {
         const xfadeRaw = Math.max(0, Math.min(1, (p - 0.65) / 0.27))
         const xfade    = 0.5 - 0.5 * Math.cos(Math.PI * xfadeRaw)
         gsap.set(imageWrapRef.current, { width: w, x: centerX, opacity: 1 - xfade })
-        vidUni.uOpacity.value = xfade
+        if (vidUni) vidUni.uOpacity.value = xfade
 
         if (xfade > 0.04 && !videoPlaying) {
           videoPlaying = true
@@ -324,7 +326,7 @@ export default function PublicationsFooterSection() {
         const xfade    = 0.5 - 0.5 * Math.cos(Math.PI * xfadeRaw)
 
         gsap.set(imageWrapRef.current, { width: w, x: centerX, opacity: 1 - xfade })
-        vidUni.uOpacity.value = xfade
+        if (vidUni) vidUni.uOpacity.value = xfade
 
         if (xfade > 0.04 && !videoPlaying) {
           videoPlaying = true
@@ -350,6 +352,7 @@ export default function PublicationsFooterSection() {
     onScroll()
 
     return () => {
+      disposed = true
       if (rafId) cancelAnimationFrame(rafId)
       scroller.removeEventListener('scroll', onScroll)
       sticky.removeEventListener('mousemove', onMouseMove)
