@@ -11,7 +11,7 @@ import styles from '@/styles/sections/VideoIntro.module.css'
 const CinematicLayer = dynamic(() => import('@/components/three/CinematicLayer'), { ssr: false })
 
 // The video file is attached only when it is about to play, so the poster paints first.
-const VIDEO_SRC = '/assets/about-me-v2.mp4'
+const VIDEO_SRC = '/assets/about-me-v3.mp4'
 function attachSrc(v) {
   if (!v.getAttribute('src')) v.src = VIDEO_SRC
 }
