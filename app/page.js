@@ -57,7 +57,8 @@ export default function Home() {
       if (idx >= TOTAL) idx = 0
       if (idx < 0)      idx = TOTAL - 1
 
-      if (idx === idxRef.current || busyRef.current) return
+      // Touch swipes may interrupt a running step, so fast flicks chain sections.
+      if (idx === idxRef.current || (busyRef.current && !touch)) return
 
       // Footer → top: fade-cut instead of scrolling back through all sections
       if (idxRef.current === TOTAL - 1 && idx === 0) {
@@ -76,7 +77,7 @@ export default function Home() {
       tweenRef.current?.kill()
       tweenRef.current = gsap.to(el, {
         scrollTop: idx * window.innerHeight,
-        duration: touch ? 0.6 : 1.0,
+        duration: touch ? 0.35 : 1.0,
         ease: 'power3.inOut',
         onComplete: () => { setTimeout(() => { busyRef.current = false }, touch ? 80 : 600) },
       })
@@ -113,12 +114,13 @@ export default function Home() {
     }
     function onTouchEnd(e) {
       const dy = touchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 40 || busyRef.current || canScroll(scroller, dy)) return
+      if (Math.abs(dy) < 25 || canScroll(scroller, dy)) return
       goTo(idxRef.current + (dy > 0 ? 1 : -1), true)
     }
 
     function onScroll() {
-      idxRef.current = Math.round(el.scrollTop / window.innerHeight)
+      // Mid-animation positions are not a section; keep the step's target.
+      if (!busyRef.current) idxRef.current = Math.round(el.scrollTop / window.innerHeight)
     }
 
     // Footer video ends → same fade-cut loop back to top
