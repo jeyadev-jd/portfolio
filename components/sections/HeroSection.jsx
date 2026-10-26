@@ -54,14 +54,17 @@ export default function HeroSection() {
     }
   }
 
+  // Mount the 3D scene only when the hero is about to scroll into view.
+  // It sits below the intro, so loading it at page start only slows the first screen.
   useEffect(() => {
-    const run = () => setShowBg(true)
-    if ('requestIdleCallback' in window) {
-      const id = requestIdleCallback(run, { timeout: 1500 })
-      return () => cancelIdleCallback(id)
-    }
-    const id = setTimeout(run, 800)
-    return () => clearTimeout(id)
+    const section = sectionRef.current
+    if (!section) return
+    if (!('IntersectionObserver' in window)) { setShowBg(true); return }
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setShowBg(true); io.disconnect() }
+    }, { rootMargin: '0px 0px 100% 0px' })
+    io.observe(section)
+    return () => io.disconnect()
   }, [])
 
   useEffect(() => {
