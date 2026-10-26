@@ -133,24 +133,17 @@ export default function Home() {
     el.addEventListener('wheel',  onWheel,  { passive: false })
     el.addEventListener('scroll', onScroll, { passive: true  })
 
-    // Phones scroll natively and snap per section in CSS (.homeScroller in globals.css).
-    // Larger touch devices keep the GSAP one-swipe-one-section step.
-    const isPhone = window.matchMedia('(max-width: 767px)').matches
-    if (!isPhone) {
-      el.addEventListener('touchstart', onTouchStart, { passive: true })
-      el.addEventListener('touchmove',  onTouchMove,  { passive: false })
-      el.addEventListener('touchend',   onTouchEnd,   { passive: true })
-    }
+    el.addEventListener('touchstart', onTouchStart, { passive: true })
+    el.addEventListener('touchmove',  onTouchMove,  { passive: false })
+    el.addEventListener('touchend',   onTouchEnd,   { passive: true })
     window.addEventListener('footer-loop-back', onFooterLoop)
 
     return () => {
       el.removeEventListener('wheel',  onWheel)
       el.removeEventListener('scroll', onScroll)
-      if (!isPhone) {
-        el.removeEventListener('touchstart', onTouchStart)
-        el.removeEventListener('touchmove',  onTouchMove)
-        el.removeEventListener('touchend',   onTouchEnd)
-      }
+      el.removeEventListener('touchstart', onTouchStart)
+      el.removeEventListener('touchmove',  onTouchMove)
+      el.removeEventListener('touchend',   onTouchEnd)
       window.removeEventListener('footer-loop-back', onFooterLoop)
       tweenRef.current?.kill()
     }
@@ -176,7 +169,7 @@ export default function Home() {
       />
 
       <Navbar />
-      <main ref={mainRef} className="homeScroller" style={{ height: '100vh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
+      <main ref={mainRef} style={{ height: '100vh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
         <div>
           <VideoIntro/>
           <HeroSection/>
