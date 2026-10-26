@@ -28,7 +28,7 @@ function randColor() {
   return PALETTE[Math.floor(Math.random() * PALETTE.length)]
 }
 
-export default function HeroBackground({ lite = false }) {
+export default function HeroBackground() {
   const mountRef = useRef(null)
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function HeroBackground({ lite = false }) {
     const tex = makeSprite()
 
     // ── Layer 1: tiny fast drifters ───────────────────────
-    const N1   = lite ? 30 : 65
+    const N1   = 65
     const p1   = new Float32Array(N1 * 3)
     const c1   = new Float32Array(N1 * 3)
     const spd1 = new Float32Array(N1)
@@ -84,7 +84,7 @@ export default function HeroBackground({ lite = false }) {
     scene.add(pts1)
 
     // ── Layer 2: large soft bokeh blobs ───────────────────
-    const N2   = lite ? 10 : 22
+    const N2   = 22
     const p2   = new Float32Array(N2 * 3)
     const c2   = new Float32Array(N2 * 3)
     const spd2 = new Float32Array(N2)

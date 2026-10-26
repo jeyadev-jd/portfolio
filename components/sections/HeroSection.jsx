@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, Fragment } from 'react'
+import { useEffect, useRef, Fragment } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
@@ -28,12 +28,7 @@ function splitTagline(text, highlight) {
   }, [])
 }
 
-// Phones get a lighter particle field. Read only after mount, so SSR stays stable.
-const isMobile = () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
-
 export default function HeroSection() {
-  // The 3D background mounts after the first paint, so the photo and text are never waiting on WebGL.
-  const [showBg, setShowBg] = useState(false)
   const sectionRef     = useRef(null)
   const greetRef       = useRef(null)
   const roleRef        = useRef(null)
@@ -53,19 +48,6 @@ export default function HeroSection() {
       gsap.to(scroller, { scrollTop: 3 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
     }
   }
-
-  // Mount the 3D scene only when the hero is about to scroll into view.
-  // It sits below the intro, so loading it at page start only slows the first screen.
-  useEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
-    if (!('IntersectionObserver' in window)) { setShowBg(true); return }
-    const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setShowBg(true); io.disconnect() }
-    }, { rootMargin: '0px 0px 100% 0px' })
-    io.observe(section)
-    return () => io.disconnect()
-  }, [])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -112,7 +94,7 @@ export default function HeroSection() {
   return (
     <section ref={sectionRef} className={styles.section}>
 
-      {showBg && <HeroBackground lite={isMobile()} />}
+      <HeroBackground />
 
       {/* Photo */}
       <div ref={photoRef} className={styles.photo}>

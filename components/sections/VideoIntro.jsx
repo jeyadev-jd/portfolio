@@ -16,18 +16,6 @@ function scrollNext() {
 
 export default function VideoIntro() {
   const videoRef    = useRef(null)
-  const bgVideoRef  = useRef(null)
-
-  // Ambient background video starts after the first paint, so it never competes with the hero.
-  useEffect(() => {
-    const id = setTimeout(() => {
-      const v = bgVideoRef.current
-      if (!v) return
-      v.src = '/assets/about-me-v2.mp4'
-      v.play().catch(() => {})
-    }, 1200)
-    return () => clearTimeout(id)
-  }, [])
   const greetRef    = useRef(null)
   const nameRef     = useRef(null)
   const roleRef     = useRef(null)
@@ -44,8 +32,15 @@ export default function VideoIntro() {
     setIsMobile(window.matchMedia('(max-width: 767px)').matches)
   }, [])
 
-  // The landing text animates with CSS (see VideoIntro.module.css), so it is visible in the
-  // server HTML and does not wait for JavaScript. That is what the LCP element was waiting on.
+  // Entrance animation
+  useEffect(() => {
+    const tl = gsap.timeline({ delay: 0.4 })
+    tl.fromTo(greetRef.current,  { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+      .fromTo(nameRef.current,   { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' }, '-=0.2')
+      .fromTo(roleRef.current,   { opacity: 0, y:  20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+      .fromTo(scrollRef.current, { opacity: 0 },         { opacity: 1, duration: 0.5 }, '-=0.1')
+    return () => tl.kill()
+  }, [])
 
   // Video fade-in - no auto-unmute; user must click the button
   useEffect(() => {
@@ -124,9 +119,8 @@ export default function VideoIntro() {
 
       {/* 1 - Blurred ambient background */}
       <video
-        ref={bgVideoRef}
-        muted playsInline
-        preload="none"
+        src="/assets/about-me-v2.mp4"
+        autoPlay muted playsInline
         aria-hidden="true"
         className={styles.bgVideo}
       />
@@ -137,7 +131,6 @@ export default function VideoIntro() {
         data-testid="intro-video"
         src="/assets/about-me-v2.mp4"
         poster="/assets/about-me-poster.webp"
-        preload="metadata"
         muted playsInline
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
@@ -153,11 +146,11 @@ export default function VideoIntro() {
 
       {/* 5 - Landing text */}
       <div className={styles.heroContent}>
-        <p ref={greetRef} className={`${styles.eyebrow} ${styles.introDown}`}>{content.site.tagline}</p>
-        <h1 ref={nameRef} className={`${styles.name} ${styles.introRight}`}>
+        <p ref={greetRef} className={styles.eyebrow}>{content.site.tagline}</p>
+        <h1 ref={nameRef} className={styles.name}>
           {profile.name.full}
         </h1>
-        <p ref={roleRef} className={`${styles.role} ${styles.introUp}`}>{profile.roles.detailed}</p>
+        <p ref={roleRef} className={styles.role}>{profile.roles.detailed}</p>
       </div>
 
       {/* 6 - Paused overlay */}
@@ -215,7 +208,7 @@ export default function VideoIntro() {
       {/* 9 - Scroll cue */}
       <button
         ref={scrollRef}
-        className={`${styles.scrollCue} ${styles.introFade}`}
+        className={styles.scrollCue}
         onClick={scrollNext}
         aria-label="Scroll to next section"
       >
