@@ -10,6 +10,12 @@ import styles from '@/styles/sections/VideoIntro.module.css'
 
 const CinematicLayer = dynamic(() => import('@/components/three/CinematicLayer'), { ssr: false })
 
+// The video file is attached only when it is about to play, so the poster paints first.
+const VIDEO_SRC = '/assets/about-me-v2.mp4'
+function attachSrc(v) {
+  if (!v.getAttribute('src')) v.src = VIDEO_SRC
+}
+
 function scrollNext() {
   const main = document.querySelector('main')
   if (main) main.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
@@ -49,8 +55,7 @@ export default function VideoIntro() {
     if (!v) return
     // Guarantee muted on mount regardless of browser attribute handling
     v.muted = true
-    const t = gsap.fromTo(v, { opacity: 0 }, { opacity: 1, duration: 1.2, ease: 'power2.out' })
-    return () => t.kill()
+    // No JS fade: the poster on this element is the LCP image, so it must be visible at first paint.
   }, [])
 
   // Unmute when screen loader is dismissed (fires inside user gesture - Safari safe)
@@ -71,6 +76,7 @@ export default function VideoIntro() {
     function onAnimationDone() {
       const v = videoRef.current
       if (!v) return
+      attachSrc(v)
       v.play().catch(() => {})
     }
     window.addEventListener('loader-animation-done', onAnimationDone)
@@ -96,7 +102,7 @@ export default function VideoIntro() {
     const v = videoRef.current
     if (!v) return
     if (playing) { v.pause(); setPlaying(false) }
-    else         { v.play();  setPlaying(true)  }
+    else         { attachSrc(v); v.play();  setPlaying(true)  }
   }
 
   function toggleMute() {
@@ -125,7 +131,7 @@ export default function VideoIntro() {
       <video
         ref={videoRef}
         data-testid="intro-video"
-        src="/assets/about-me-v2.mp4"
+        preload="none"
         poster="/assets/about-me-poster-v2.webp"
         muted playsInline
         onPlay={() => setPlaying(true)}
