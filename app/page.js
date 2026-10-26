@@ -51,7 +51,8 @@ export default function Home() {
       })
     }
 
-    function goTo(idx) {
+    // `touch` uses a shorter tween and cooldown: phones have no trackpad inertia to absorb.
+    function goTo(idx, touch = false) {
       // Wrap-around
       if (idx >= TOTAL) idx = 0
       if (idx < 0)      idx = TOTAL - 1
@@ -75,9 +76,9 @@ export default function Home() {
       tweenRef.current?.kill()
       tweenRef.current = gsap.to(el, {
         scrollTop: idx * window.innerHeight,
-        duration: 1.0,
+        duration: touch ? 0.6 : 1.0,
         ease: 'power3.inOut',
-        onComplete: () => { setTimeout(() => { busyRef.current = false }, 600) },
+        onComplete: () => { setTimeout(() => { busyRef.current = false }, touch ? 80 : 600) },
       })
     }
 
@@ -90,29 +91,30 @@ export default function Home() {
     // One swipe = one section on every touch device. Phones used native momentum
     // scrolling, which flung past several sections in one swipe.
     // Inner scroll areas (e.g. Work Experience on phones) scroll normally until their edge.
-    function scrollsInside(target, dy) {
+    // Found once per touch, not on every move: walking styles on each touchmove lagged.
+    function innerScroller(target) {
       for (let n = target; n && n !== el; n = n.parentElement) {
         const oy = getComputedStyle(n).overflowY
-        if ((oy === 'auto' || oy === 'scroll') && n.scrollHeight > n.clientHeight + 1) {
-          const atTop    = n.scrollTop <= 0
-          const atBottom = n.scrollTop + n.clientHeight >= n.scrollHeight - 1
-          if ((dy > 0 && !atBottom) || (dy < 0 && !atTop)) return true
-        }
+        if ((oy === 'auto' || oy === 'scroll') && n.scrollHeight > n.clientHeight + 1) return n
       }
-      return false
+      return null
+    }
+    function canScroll(n, dy) {
+      if (!n) return false
+      if (dy > 0) return n.scrollTop + n.clientHeight < n.scrollHeight - 1
+      return n.scrollTop > 0
     }
 
     let touchY = 0
-    let touchTarget = null
-    function onTouchStart(e) { touchY = e.touches[0].clientY; touchTarget = e.target }
+    let scroller = null
+    function onTouchStart(e) { touchY = e.touches[0].clientY; scroller = innerScroller(e.target) }
     function onTouchMove(e) {
-      const dy = touchY - e.touches[0].clientY
-      if (!scrollsInside(touchTarget, dy)) e.preventDefault()
+      if (!canScroll(scroller, touchY - e.touches[0].clientY)) e.preventDefault()
     }
     function onTouchEnd(e) {
       const dy = touchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 40 || busyRef.current || scrollsInside(touchTarget, dy)) return
-      goTo(idxRef.current + (dy > 0 ? 1 : -1))
+      if (Math.abs(dy) < 40 || busyRef.current || canScroll(scroller, dy)) return
+      goTo(idxRef.current + (dy > 0 ? 1 : -1), true)
     }
 
     function onScroll() {
