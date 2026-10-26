@@ -78,7 +78,7 @@ export default function ProjectsSection() {
   }, [])
 
   return (
-    <div style={{ height: `${PROJECTS.length * 100}vh` }}>
+    <div data-scroll-zone style={{ height: `${PROJECTS.length * 100}vh` }}>
       <section ref={sectionRef} className={styles.section}>
 
         {/* Top bar */}

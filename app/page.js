@@ -106,21 +106,50 @@ export default function Home() {
       return n.scrollTop > 0
     }
 
+    // Projects is one screen per project. On touch it scrolls natively with momentum
+    // (data-scroll-zone), so a flick moves through several projects.
+    function inZone(dy) {
+      const z = el.querySelector('[data-scroll-zone]')
+      if (!z) return false
+      const t = el.scrollTop, top = z.offsetTop, last = top + z.offsetHeight - window.innerHeight
+      return dy > 0 ? t >= top - 2 && t < last - 2 : t > top + 2 && t <= last + 2
+    }
+
+    // After native scrolling stops, settle on the nearest screen.
+    let settleTimer = 0
+    function settle() {
+      if (busyRef.current) return
+      const h = window.innerHeight
+      const idx = Math.round(el.scrollTop / h)
+      if (Math.abs(el.scrollTop - idx * h) < 2) { idxRef.current = idx; return }
+      busyRef.current = true
+      tweenRef.current?.kill()
+      tweenRef.current = gsap.to(el, {
+        scrollTop: idx * h, duration: 0.25, ease: 'power2.out',
+        onComplete: () => { idxRef.current = idx; busyRef.current = false },
+      })
+    }
+
     let touchY = 0
     let scroller = null
+    let freeScroll = false
     function onTouchStart(e) { touchY = e.touches[0].clientY; scroller = innerScroller(e.target) }
     function onTouchMove(e) {
-      if (!canScroll(scroller, touchY - e.touches[0].clientY)) e.preventDefault()
+      const dy = touchY - e.touches[0].clientY
+      freeScroll = inZone(dy)
+      if (!freeScroll && !canScroll(scroller, dy)) e.preventDefault()
     }
     function onTouchEnd(e) {
       const dy = touchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 25 || canScroll(scroller, dy)) return
+      if (Math.abs(dy) < 25 || freeScroll || canScroll(scroller, dy)) return
       goTo(idxRef.current + (dy > 0 ? 1 : -1), true)
     }
 
     function onScroll() {
       // Mid-animation positions are not a section; keep the step's target.
       if (!busyRef.current) idxRef.current = Math.round(el.scrollTop / window.innerHeight)
+      clearTimeout(settleTimer)
+      settleTimer = setTimeout(settle, 140)
     }
 
     // Footer video ends → same fade-cut loop back to top
@@ -146,6 +175,7 @@ export default function Home() {
       el.removeEventListener('touchend',   onTouchEnd)
       window.removeEventListener('footer-loop-back', onFooterLoop)
       tweenRef.current?.kill()
+      clearTimeout(settleTimer)
     }
   }, [])
 
