@@ -387,7 +387,7 @@ export default function PublicationsFooterSection() {
         {/* ── Floating image: starts left, moves to center ── */}
         <div ref={imageWrapRef} className={styles.imageWrap}>
           <Image
-            src="/assets/footer.png"
+            src="/assets/footer.webp"
             alt=""
             fill
             quality={100}

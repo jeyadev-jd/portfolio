@@ -85,7 +85,7 @@
       "company": "Aspiration Cleantech Ventures",
       "companyShort": "ASPIRATION CLEANTECH",
       "logo": "/assets/logo-aspiration-ventures.png",
-      "image": "/assets/project-aspiration.png",
+      "image": "/assets/project-aspiration.webp",
       "link": "https://aspcv.vercel.app/",
       "type": "Internship",
       "location": "Chennai, India",
@@ -135,8 +135,8 @@
       "role": "Digital Marketing Intern",
       "company": "Aspiration Cleantech Academy",
       "companyShort": "ASPIRATION ACADEMY",
-      "logo": "/assets/logo-aspiration-academy.png",
-      "image": "/assets/project-academy.png",
+      "logo": "/assets/logo-aspiration-academy.webp",
+      "image": "/assets/project-academy.webp",
       "link": "https://aspcvacademy.com/",
       "type": "Internship",
       "location": "Chennai, India",
@@ -324,7 +324,7 @@
       "subtitle": "Real-Time Air Quality Dashboard",
       "type": "Full-Stack / Environmental",
       "link": "https://github.com/jeyadev-jd/Pollumap-V3",
-      "image": "/assets/project-pollumap.png",
+      "image": "/assets/project-pollumap.webp",
       "imgVersion": 2,
       "tech": [
         "React",
@@ -342,7 +342,7 @@
       "subtitle": "Commodity Price Forecasting Ensemble",
       "type": "AI / Finance",
       "link": "https://github.com/jeyadev-jd/market-oracle",
-      "image": "/assets/project-marketoracle.png",
+      "image": "/assets/project-marketoracle.webp",
       "imgVersion": 2,
       "tech": [
         "PyTorch",
@@ -376,7 +376,7 @@
       "subtitle": "Multi-Source Air Quality Modeling for Chennai",
       "type": "AI / Environmental",
       "link": "https://github.com/jeyadev-jd/HyperlocalAQ",
-      "image": "/assets/project-hyperlocalaq.png",
+      "image": "/assets/project-hyperlocalaq.webp",
       "imgVersion": 2,
       "tech": [
         "Python",
@@ -391,7 +391,7 @@
       "subtitle": "MERN Web Platform for a Solar Energy Company",
       "type": "Full-Stack / SaaS",
       "link": "https://aspcv.vercel.app/",
-      "image": "/assets/project-aspiration.png",
+      "image": "/assets/project-aspiration.webp",
       "tech": [
         "React",
         "Vite",
@@ -460,7 +460,7 @@
       "subtitle": "NLP-Powered Interaction Classifier",
       "type": "AI / Healthcare",
       "link": "https://github.com/jeyadev-jd/ai-drug-food-interactions",
-      "image": "/assets/project-drugfood.png",
+      "image": "/assets/project-drugfood.webp",
       "imgVersion": 2,
       "tech": [
         "Python",
@@ -508,7 +508,7 @@
       "subtitle": "Automatic Number Plate Recognition",
       "type": "AI / Computer Vision",
       "link": "https://github.com/jeyadev-jd/ANPR-YOLOv4",
-      "image": "/assets/project-anpr.png",
+      "image": "/assets/project-anpr.webp",
       "imgVersion": 2,
       "tech": [
         "YOLOv4",
@@ -524,7 +524,7 @@
       "subtitle": "ML Pipeline for Patient Health Data",
       "type": "AI / Healthcare",
       "link": "https://github.com/jeyadev-jd/cardiovascular-risk-prediction",
-      "image": "/assets/project-cardiorisk.png",
+      "image": "/assets/project-cardiorisk.webp",
       "imgVersion": 2,
       "tech": [
         "Python",
@@ -542,7 +542,7 @@
       "subtitle": "LightGBM Fantasy Team Optimizer",
       "type": "AI / Sports Analytics",
       "link": "https://github.com/jeyadev-jd/t20-fantasy-impact-model",
-      "image": "/assets/project-t20fantasy.png",
+      "image": "/assets/project-t20fantasy.webp",
       "imgVersion": 2,
       "tech": [
         "Python",
@@ -558,7 +558,7 @@
       "subtitle": "Job-Oriented Training Platform",
       "type": "Full-Stack / EdTech",
       "link": "https://aspcvacademy.com/",
-      "image": "/assets/project-academy.png",
+      "image": "/assets/project-academy.webp",
       "tech": [
         "Next.js",
         "TypeScript",
@@ -573,7 +573,7 @@
       "subtitle": "AI-Powered Civic Education App",
       "type": "AI / Civic Tech",
       "link": "https://vote-iq-five.vercel.app/",
-      "image": "/assets/project-voteiq.png",
+      "image": "/assets/project-voteiq.webp",
       "imgVersion": 2,
       "tech": [
         "Flask",
@@ -589,7 +589,7 @@
       "subtitle": "Full-Site Archiver Built on Playwright",
       "type": "Tooling",
       "link": "https://github.com/jeyadev-jd/Advanced-CLI-Web-Scrapper",
-      "image": "/assets/project-scrapper.png",
+      "image": "/assets/project-scrapper.webp",
       "imgVersion": 2,
       "tech": [
         "Python",
@@ -604,7 +604,7 @@
       "subtitle": "Follower/Following Analysis Script",
       "type": "Tooling",
       "link": "https://github.com/jeyadev-jd/InstaAnalyzer",
-      "image": "/assets/project-instaanalyzer.png",
+      "image": "/assets/project-instaanalyzer.webp",
       "imgVersion": 2,
       "tech": [
         "Python",
@@ -619,7 +619,7 @@
       "subtitle": "Interactive Browser-Based Quantum Circuit Visualizer",
       "type": "Education / Visualization",
       "link": "https://jeyadev-jd.github.io/Quantum-Teleportation-Simulation/",
-      "image": "/assets/project-quantum.png",
+      "image": "/assets/project-quantum.webp",
       "imgVersion": 2,
       "tech": [
         "JavaScript",
@@ -648,7 +648,7 @@
       "subtitle": "Von Neumann CPU Concepts on Real Hardware",
       "type": "Embedded / COA",
       "link": "https://www.youtube.com/watch?v=08GiG0zbWGA",
-      "image": "/assets/project-arduino.png",
+      "image": "/assets/project-arduino.webp",
       "imgVersion": 2,
       "tech": [
         "Arduino",
@@ -663,7 +663,7 @@
       "subtitle": "OOP Rooftop Farm Management Sim",
       "type": "Academic / Java",
       "link": "https://github.com/jeyadev-jd/Urban-Farming-Simulator",
-      "image": "/assets/project-urbanfarm.png",
+      "image": "/assets/project-urbanfarm.webp",
       "imgVersion": 2,
       "tech": [
         "Java",
@@ -677,7 +677,7 @@
       "subtitle": "CLI Quiz Game Inspired by KBC",
       "type": "Academic / Java",
       "link": "https://github.com/jeyadev-jd/Crorepati-A-CLI-Based-Quiz-Game-Using-Java",
-      "image": "/assets/project-crorepati.png",
+      "image": "/assets/project-crorepati.webp",
       "imgVersion": 2,
       "tech": [
         "Java"

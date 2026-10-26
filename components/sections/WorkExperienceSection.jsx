@@ -101,7 +101,7 @@ export default function WorkExperienceSection() {
 
       <div className={styles.bgImg} aria-hidden>
         <Image
-          src="/assets/work-experience.png?v=2"
+          src="/assets/work-experience.webp?v=2"
           alt=""
           fill
           quality={100}
