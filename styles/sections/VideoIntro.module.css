@@ -86,8 +86,11 @@
 
 @keyframes roleIn { from { opacity: 0; } to { opacity: 1; } }
 
+/* Greeting and name: same first-paint fade as the role line. */
+.eyebrow, .name { animation: roleIn 0.3s ease-out both; }
+
 @media (prefers-reduced-motion: reduce) {
-  .role { animation: none; }
+  .role, .eyebrow, .name { animation: none; }
 }
 
 /* ── Paused overlay ─────────────────────────── */

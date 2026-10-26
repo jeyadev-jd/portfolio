@@ -35,9 +35,8 @@ export default function VideoIntro() {
   // Entrance animation
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.4 })
-    tl.fromTo(greetRef.current,  { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
-      .fromTo(nameRef.current,   { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' }, '-=0.2')
-      .fromTo(scrollRef.current, { opacity: 0 },         { opacity: 1, duration: 0.5 }, '-=0.1')
+    // Greeting, name and role fade in with CSS at first paint (they are LCP candidates).
+    tl.fromTo(scrollRef.current, { opacity: 0 },         { opacity: 1, duration: 0.5 }, '-=0.1')
     return () => tl.kill()
   }, [])
 
