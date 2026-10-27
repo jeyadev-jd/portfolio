@@ -65,8 +65,32 @@ export default function VideosPage() {
         <a href={CHANNEL_URL} target="_blank" rel="me noopener noreferrer" className={styles.btn}>Visit the YouTube channel ↗</a>
       </div>
 
+      <section className={styles.prose}>
+        <p>
+          The channel has two kinds of video. Project demos walk through things I built: Pollumap V3, an AI air quality
+          dashboard for Chennai with 24-hour forecasts and healthy routing; Pollumap V2, my Smart India Hackathon 2025
+          demo for Delhi-NCR; and an Arduino calculator that teaches Von Neumann architecture through a Web Serial UI.
+          Tutorials cover practical setup: a full Linux Mint installation, and MongoDB from creating databases and
+          collections to CRUD operations on a sample books collection.
+        </p>
+        <p>
+          Each video plays here without leaving the page. Where a video belongs to a project, the card links to the
+          project page with the source code, architecture and results.
+        </p>
+      </section>
+
+      <h2 className={styles.h2}>Project demos</h2>
+      <VideoGrid list={videos.filter((v) => v.kind === 'demo')} />
+      <h2 className={styles.h2}>Tutorials</h2>
+      <VideoGrid list={videos.filter((v) => v.kind === 'tutorial')} />
+    </PageShell>
+  )
+}
+
+function VideoGrid({ list }) {
+  return (
       <ul className={styles.grid}>
-        {videos.map((v) => {
+        {list.map((v) => {
           const project = v.project && getProject(v.project)
           return (
             <li key={v.id}>
@@ -85,6 +109,5 @@ export default function VideosPage() {
           )
         })}
       </ul>
-    </PageShell>
   )
 }

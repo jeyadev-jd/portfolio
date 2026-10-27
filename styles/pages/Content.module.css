@@ -114,7 +114,10 @@
 }
 
 /* ─── Buttons ─── */
-.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 2rem; }
+@media (max-width: 767px) {
+  .actions .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
+}
 
 .btn {
   display: inline-flex;
