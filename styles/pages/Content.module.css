@@ -388,12 +388,7 @@
 }
 .sectionHead .h2 { margin: 0; }
 .seeAll { font-weight: 600; color: var(--accent-hover); white-space: nowrap; }
-.postCard {
-  padding: 1.1rem 1.2rem;
-  border-radius: 14px;
-  background: var(--surface-white);
-  border-left: 4px solid #0a66c2;
-}
+.postCard { padding: 0; }
 .postCard h3 { margin: 0 0 0.25rem; font-size: 1.05rem; line-height: 1.3; }
 
 @media (max-width: 767px) {
