@@ -8,7 +8,7 @@ Heed deprecation notices.
 
 ## Key project constraints
 
-- **No CSS scroll-snap.** Scroll is controlled entirely by `goTo(idx)` in `app/page.js` via GSAP. Do not add `scroll-snap-type` or native scroll behavior.
+- **No CSS scroll-snap on desktop.** Desktop scroll is controlled by `goTo(idx)` in `app/page.js` via GSAP. Phones (`pointer: coarse`, ≤767px) scroll natively with the `.home-scroller` snap rules in `app/globals.css`.
 - **CSS Modules only** for all component styles. No inline style objects except for GSAP-driven dynamic values.
 - **GSAP from `@/lib/gsap`** — not imported directly from `gsap`. This ensures ScrollTrigger is registered.
 - **All portfolio content in `data/profile.json`** — do not hardcode names, roles, or social links in components.

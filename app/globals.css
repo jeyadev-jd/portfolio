@@ -79,3 +79,20 @@ main { scrollbar-width: none; -ms-overflow-style: none; }
   html, body { height: 100svh !important; }
   main { height: 100svh !important; }
 }
+
+/* Phones: Reels-style native snap. Sticky sections report wrong snap positions,
+   so page.js drops invisible .snap-mark stops at each section's flow position.
+   Taller blocks (Work Experience, footer) glide freely inside. */
+@media (pointer: coarse) and (max-width: 767px) {
+  .home-scroller { scroll-snap-type: y mandatory; }
+  .home-scroller > div { position: relative; }
+  .snap-mark {
+    position: absolute;
+    left: 0;
+    width: 1px;
+    pointer-events: none;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .snap-mark.snap-tall { scroll-snap-align: start end; scroll-snap-stop: normal; }
+}

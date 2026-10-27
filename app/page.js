@@ -194,7 +194,26 @@ export default function Home() {
 
     // Phones scroll natively: the address bar resizes the viewport mid-swipe, so
     // JS stepping by innerHeight landed between sections and felt stuck.
-    if (!touch) {
+    let marks = []
+    function placeMarks() {
+      marks.forEach(m => m.remove())
+      const wrap = el.firstElementChild
+      marks = [...wrap.children].filter(n => !n.classList.contains('snap-mark')).map(n => {
+        const m = document.createElement('div')
+        m.className = 'snap-mark'
+        m.style.top = `${n.offsetTop}px`
+        // Tall blocks get a full-height mark: the browser scrolls freely inside it.
+        m.style.height = `${n.offsetHeight}px`
+        if (n.offsetHeight > el.clientHeight + 2) m.classList.add('snap-tall')
+        wrap.appendChild(m)
+        return m
+      })
+    }
+    // Re-place whenever layout changes (Projects swaps to its phone layout after mount).
+    const ro = touch ? new ResizeObserver(placeMarks) : null
+    if (touch) {
+      ro.observe(el.firstElementChild)
+    } else {
       el.addEventListener('touchstart', onTouchStart, { passive: true })
       el.addEventListener('touchmove',  onTouchMove,  { passive: false })
       el.addEventListener('touchend',   onTouchEnd,   { passive: true })
@@ -208,6 +227,8 @@ export default function Home() {
       el.removeEventListener('touchmove',  onTouchMove)
       el.removeEventListener('touchend',   onTouchEnd)
       window.removeEventListener('footer-loop-back', onFooterLoop)
+      ro?.disconnect()
+      marks.forEach(m => m.remove())
       tweenRef.current?.kill()
       clearTimeout(settleTimer)
     }
@@ -233,7 +254,7 @@ export default function Home() {
       />
 
       <Navbar />
-      <main ref={mainRef} style={{ height: '100dvh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
+      <main ref={mainRef} className="home-scroller" style={{ height: '100dvh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
         <div>
           <VideoIntro/>
           <HeroSection/>
