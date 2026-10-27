@@ -215,7 +215,7 @@ function MobileProjects() {
                 src={`${proj.image}?v=${proj.imgVersion ?? 1}`}
                 alt={proj.title}
                 fill
-                quality={70}
+                quality={75}
                 sizes="85vw"
                 className={styles.slideImg}
                 loading={i < 2 ? 'eager' : 'lazy'}
