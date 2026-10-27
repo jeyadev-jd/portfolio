@@ -121,7 +121,7 @@ export default async function ArticlePage({ params }) {
           <section className={styles.postCard}>
             <h2 className={styles.h2}>Discussed on LinkedIn</h2>
             <h3><a href={postUrl(post.urn)} target="_blank" rel="noopener noreferrer">{post.title}</a></h3>
-            <LinkedInEmbed urn={post.urn} title={post.title} />
+            <LinkedInEmbed urn={post.urn} title={post.title} h={post.h} />
           </section>
         )}
 

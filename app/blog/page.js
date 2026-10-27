@@ -117,12 +117,12 @@ export default function BlogPage() {
         <h2 className={styles.h2}>From LinkedIn</h2>
         <Link href="/linkedin" className={styles.seeAll}>All {posts.length} posts →</Link>
       </div>
-      <ul className={styles.grid}>
+      <ul className={styles.postGrid}>
         {latestPosts.map((p) => (
           <li key={p.urn} className={styles.postCard}>
             <h3><a href={postUrl(p.urn)} target="_blank" rel="noopener noreferrer">{p.title}</a></h3>
             <p className={styles.timelineMeta}>{p.date}</p>
-            <LinkedInEmbed urn={p.urn} title={p.title} />
+            <LinkedInEmbed urn={p.urn} title={p.title} h={p.h} />
           </li>
         ))}
       </ul>

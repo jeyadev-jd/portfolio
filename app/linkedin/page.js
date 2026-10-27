@@ -69,7 +69,7 @@ export default function LinkedInPage() {
           <li key={p.urn} className={styles.timelineItem}>
             <h3><a href={postUrl(p.urn)} target="_blank" rel="noopener noreferrer">{p.title}</a></h3>
             <p className={styles.timelineMeta}>{p.date}</p>
-            <LinkedInEmbed urn={p.urn} title={p.title} />
+            <LinkedInEmbed urn={p.urn} title={p.title} h={p.h} />
           </li>
         ))}
       </ol>

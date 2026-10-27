@@ -27,12 +27,12 @@ export function YouTubeEmbed({ id, title }) {
 }
 
 // The full post, with its pictures. loading="lazy" keeps it from downloading until
-// it is scrolled near. No inner scrollbar: the frame is tall enough for a post with an
-// image, so a swipe scrolls the page instead of getting caught inside the post.
-// LinkedIn doesn't report the post's height, so the frame can't size itself.
-export function LinkedInEmbed({ urn, title }) {
+// it is scrolled near. LinkedIn doesn't report a post's height, so `h` holds heights
+// measured ahead of time at 504px (desktop) and 358px (phone) wide.
+export function LinkedInEmbed({ urn, title, h }) {
+  const size = h ? { '--h-d': `${h.d}px`, '--h-m': `${h.m}px` } : undefined
   return (
-    <div className={styles.embedPost}>
+    <div className={styles.embedPost} style={size}>
       <iframe
         src={`https://www.linkedin.com/embed/feed/update/urn:li:activity:${urn}`}
         title={`LinkedIn post: ${title}`}
