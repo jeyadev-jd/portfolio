@@ -68,7 +68,7 @@ export default async function ArticlePage({ params }) {
           url: `${SITE_URL}/writing/${a.slug}`,
           mainEntityOfPage: `${SITE_URL}/writing/${a.slug}`,
           datePublished: a.date,
-          dateModified: a.date,
+          dateModified: a.updated ?? a.date,
           keywords: a.tags.join(', '),
           image: `${SITE_URL}/opengraph-image.png`,
           author: { '@id': `${SITE_URL}/#person` },
@@ -94,6 +94,25 @@ export default async function ArticlePage({ params }) {
             </div>
           </section>
         ))}
+
+        {a.faq && (
+          <section>
+            <h2 className={styles.h2}>Questions people ask</h2>
+            <JsonLd data={{
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: a.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+            }} />
+            <div className={styles.prose}>
+              {a.faq.map((f) => (
+                <div key={f.q}>
+                  <h3>{f.q}</h3>
+                  <p>{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {project && (
           <div className={styles.actions}>
