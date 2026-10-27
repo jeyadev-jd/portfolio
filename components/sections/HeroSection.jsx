@@ -31,7 +31,15 @@ function splitTagline(text, highlight) {
 export default function HeroSection() {
   // No 3D on phones: it was the main cost on mobile page speed.
   const [show3D, setShow3D] = useState(false)
-  useEffect(() => { setShow3D(!window.matchMedia('(max-width: 767px)').matches) }, [])
+  // Desktop only, and only after the page has loaded: Three.js is the largest script.
+  useEffect(() => {
+    if (window.matchMedia('(max-width: 767px)').matches) return
+    let id = 0
+    const start = () => { id = requestIdleCallback(() => setShow3D(true), { timeout: 3000 }) }
+    if (document.readyState === 'complete') start()
+    else window.addEventListener('load', start, { once: true })
+    return () => { window.removeEventListener('load', start); cancelIdleCallback(id) }
+  }, [])
   const sectionRef     = useRef(null)
   const greetRef       = useRef(null)
   const roleRef        = useRef(null)
