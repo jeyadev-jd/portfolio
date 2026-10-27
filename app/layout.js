@@ -2,7 +2,6 @@ import { Geist, Geist_Mono, Baloo_2, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/ui/Cursor";
 import { SITE_URL } from '@/lib/siteConfig';
-import { Analytics } from "@vercel/analytics/next";
 import profile from "@/data/profile.json";
 import { projects } from '@/lib/projects';
 
@@ -203,7 +202,6 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${baloo.variable} ${dancing.variable} h-full antialiased`}>
         <Cursor />
         {children}
-        <Analytics />
       </body>
     </html>
   );

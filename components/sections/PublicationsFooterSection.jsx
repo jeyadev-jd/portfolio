@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useRef, Fragment } from 'react'
+import { createPausableLoop } from '@/lib/pausableLoop'
 import Image from 'next/image'
 import { gsap } from '@/lib/gsap'
 import {
@@ -121,12 +122,13 @@ export default function PublicationsFooterSection() {
 
     const isMobile = window.innerWidth < 768
 
-    let renderer, vidUni, rafId, videoPlaying = false
+    let renderer, vidUni, stopLoop, nearIO, videoPlaying = false
     let disposed = false
     let onMouseMove = () => {}, onResize = () => {}
 
-    // Three.js loads only on desktop, so phones never download it.
-    if (!isMobile && canvas && videoEl) import('three').then((THREE) => {
+    // Three.js loads only on desktop, so phones never download it, and only once the
+    // footer is within a screen: loading it and the video at page load cost main-thread time.
+    const initGL = () => import('three').then((THREE) => {
       if (disposed) return
       // ── Three.js video setup ────────────────────────────────
       const W = sticky.offsetWidth
@@ -190,17 +192,24 @@ export default function PublicationsFooterSection() {
       }
       window.addEventListener('resize', onResize)
 
-      function tick() {
-        rafId = requestAnimationFrame(tick)
+      // Renders only while the footer is on screen.
+      stopLoop = createPausableLoop(sticky, () => {
         mx.x += (mx.tx - mx.x) * 0.04
         mx.y += (mx.ty - mx.y) * 0.04
         vidMesh.position.x = mx.x * 14
         vidMesh.position.y = mx.y * -8
         vidTex.needsUpdate = true
         renderer.render(scene, camera)
-      }
-      tick()
+      })
     })
+    if (!isMobile && canvas && videoEl) {
+      nearIO = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) return
+        nearIO.disconnect()
+        initGL()
+      }, { root: scroller, rootMargin: '100% 0px' })
+      nearIO.observe(wrapper)
+    }
 
     // ── Publication entry animation ───────────────────────────
     let pubAnimDone = false
@@ -353,7 +362,8 @@ export default function PublicationsFooterSection() {
 
     return () => {
       disposed = true
-      if (rafId) cancelAnimationFrame(rafId)
+      nearIO?.disconnect()
+      stopLoop?.()
       scroller.removeEventListener('scroll', onScroll)
       sticky.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('resize', onResize)
