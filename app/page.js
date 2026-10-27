@@ -10,11 +10,8 @@ import ProjectsSection       from '@/components/sections/ProjectsSection'
 import WorkExperienceSection from '@/components/sections/WorkExperienceSection'
 import PublicationsFooterSection from '@/components/sections/PublicationsFooterSection'
 import ScreenLoader from '@/components/sections/ScreenLoader'
-import profile               from '@/data/profile.json'
 
-// Snap: 0=video 1=hero 2=about 3..4=projects 5=work-exp 6=publications 7=footer (mobile: 6=publications 7=footer)
-const PROJECT_SLIDES = profile.projects.length
-const TOTAL          = 7 + PROJECT_SLIDES  // 9
+// Screens: video, hero, about, projects (one per project on desktop, one carousel on phones), work-exp, publications, footer
 
 export default function Home() {
   const mainRef        = useRef(null)
@@ -27,6 +24,9 @@ export default function Home() {
   useEffect(() => {
     const el = mainRef.current
     if (!el) return
+
+    // Screen count: Projects is one screen per project on desktop, one on phones.
+    const total = () => Math.round(el.scrollHeight / window.innerHeight)
 
     function fadeLoop(targetScrollTop, targetIdx) {
       busyRef.current = true
@@ -54,6 +54,7 @@ export default function Home() {
     // `touch` uses a shorter tween and cooldown: phones have no trackpad inertia to absorb.
     function goTo(idx, touch = false) {
       // Wrap-around
+      const TOTAL = total()
       if (idx >= TOTAL) idx = 0
       if (idx < 0)      idx = TOTAL - 1
 
@@ -131,6 +132,8 @@ export default function Home() {
     }
 
     let touchY = 0
+    let touchX = 0
+    let horiz = false
     let scroller = null
     let freeScroll = false
     // Overlay layers can sit above an inner scroll area (Work Experience on phones),
@@ -152,16 +155,21 @@ export default function Home() {
     function onTouchStart(e) {
       const t = e.touches[0]
       touchY = t.clientY
+      touchX = t.clientX
+      horiz = false
       scroller = innerScroller(e.target) || scrollerAt(t.clientX, t.clientY)
     }
     function onTouchMove(e) {
       const dy = touchY - e.touches[0].clientY
+      // Sideways swipe on the phone project carousel: let it scroll natively.
+      if (!horiz && Math.abs(touchX - e.touches[0].clientX) > Math.abs(dy) && e.target.closest('[data-hscroll]')) horiz = true
+      if (horiz) return
       freeScroll = inZone(dy)
       if (!freeScroll && !canScroll(scroller, dy)) e.preventDefault()
     }
     function onTouchEnd(e) {
       const dy = touchY - e.changedTouches[0].clientY
-      if (Math.abs(dy) < 25 || freeScroll || canScroll(scroller, dy)) return
+      if (horiz || Math.abs(dy) < 25 || freeScroll || canScroll(scroller, dy)) return
       goTo(idxRef.current + (dy > 0 ? 1 : -1), true)
     }
 

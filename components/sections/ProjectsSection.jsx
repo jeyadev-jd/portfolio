@@ -18,8 +18,16 @@ export default function ProjectsSection() {
   const counterRef  = useRef(null)
   const progressRef = useRef(null)
   const [slideIdx, setSlideIdx] = useState(0)
+  // Phones get one screen with a native horizontal card carousel: the pinned
+  // 34-screen slider was too heavy to scroll smoothly on touch.
+  const [isPhone, setIsPhone] = useState(false)
 
   useEffect(() => {
+    setIsPhone(window.matchMedia('(max-width: 767px)').matches)
+  }, [])
+
+  useEffect(() => {
+    if (isPhone) return
     const section = sectionRef.current
     const track   = trackRef.current
     if (!section || !track) return
@@ -75,7 +83,9 @@ export default function ProjectsSection() {
     })
 
     return () => st.kill()
-  }, [])
+  }, [isPhone])
+
+  if (isPhone) return <MobileProjects />
 
   return (
     <div data-scroll-zone style={{ height: `${PROJECTS.length * 100}vh` }}>
@@ -187,5 +197,46 @@ export default function ProjectsSection() {
 
       </section>
     </div>
+  )
+}
+
+function MobileProjects() {
+  return (
+    <section className={styles.mSection}>
+      <div className={styles.topBar}>
+        <h2 className={styles.sectionLabel}>Projects</h2>
+        <Link href="/projects" className={styles.mAll}>All {PROJECTS.length} →</Link>
+      </div>
+      <ul className={styles.mTrack} data-hscroll>
+        {PROJECTS.map((proj, i) => (
+          <li key={proj.id} className={styles.mCard}>
+            <Link href={`/projects/${slugify(proj.title)}`} className={styles.mImgWrap}>
+              <Image
+                src={`${proj.image}?v=${proj.imgVersion ?? 1}`}
+                alt={proj.title}
+                fill
+                quality={70}
+                sizes="85vw"
+                className={styles.slideImg}
+                loading={i < 2 ? 'eager' : 'lazy'}
+              />
+              <span className={styles.mNum} aria-hidden>{pad(i + 1)}</span>
+            </Link>
+            <div className={styles.mBody}>
+              <span className={styles.typeTag}>{proj.type}</span>
+              <h3 className={styles.mTitle}>{proj.title}</h3>
+              <p className={styles.mDesc}>{proj.subtitle}</p>
+              <div className={styles.stack}>
+                {proj.tech.slice(0, 4).map(t => <span key={t} className={styles.tag}>{t}</span>)}
+              </div>
+              <div className={styles.mLinks}>
+                <Link href={`/projects/${slugify(proj.title)}`} className={styles.liveBtn}>Details</Link>
+                <a href={proj.link} target="_blank" rel="noopener noreferrer" className={styles.mSrc}>Live ↗</a>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }
