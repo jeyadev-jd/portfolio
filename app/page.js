@@ -173,9 +173,11 @@ export default function Home() {
       goTo(idxRef.current + (dy > 0 ? 1 : -1), true)
     }
 
+    const touch = window.matchMedia('(pointer: coarse)').matches
     function onScroll() {
       // Mid-animation positions are not a section; keep the step's target.
       if (!busyRef.current) idxRef.current = Math.round(el.scrollTop / window.innerHeight)
+      if (touch) return
       clearTimeout(settleTimer)
       settleTimer = setTimeout(settle, 140)
     }
@@ -190,9 +192,13 @@ export default function Home() {
     el.addEventListener('wheel',  onWheel,  { passive: false })
     el.addEventListener('scroll', onScroll, { passive: true  })
 
-    el.addEventListener('touchstart', onTouchStart, { passive: true })
-    el.addEventListener('touchmove',  onTouchMove,  { passive: false })
-    el.addEventListener('touchend',   onTouchEnd,   { passive: true })
+    // Phones scroll natively: the address bar resizes the viewport mid-swipe, so
+    // JS stepping by innerHeight landed between sections and felt stuck.
+    if (!touch) {
+      el.addEventListener('touchstart', onTouchStart, { passive: true })
+      el.addEventListener('touchmove',  onTouchMove,  { passive: false })
+      el.addEventListener('touchend',   onTouchEnd,   { passive: true })
+    }
     window.addEventListener('footer-loop-back', onFooterLoop)
 
     return () => {
@@ -227,7 +233,7 @@ export default function Home() {
       />
 
       <Navbar />
-      <main ref={mainRef} style={{ height: '100vh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
+      <main ref={mainRef} style={{ height: '100dvh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
         <div>
           <VideoIntro/>
           <HeroSection/>
