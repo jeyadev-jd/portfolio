@@ -42,6 +42,7 @@ export function GET() {
     '',
     '## Writing',
     '',
+    `- [Blog](${SITE_URL}/blog): articles, LinkedIn posts and project videos in one place`,
     ...articles.map((a) => `- [${a.title}](${SITE_URL}/writing/${a.slug}): ${a.description}`),
     '',
     '## Highlights',

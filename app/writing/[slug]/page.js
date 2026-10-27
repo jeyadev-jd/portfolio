@@ -5,6 +5,9 @@ import profile from '@/data/profile.json'
 import { articles, getArticle } from '@/lib/articles'
 import { getProject } from '@/lib/projects'
 import PageShell, { JsonLd, breadcrumbSchema } from '@/components/pages/PageShell'
+import { videos } from '@/lib/videos'
+import { posts, postUrl } from '@/lib/linkedin'
+import { YouTubeEmbed, LinkedInEmbed } from '@/components/pages/Embeds'
 import styles from '@/styles/pages/Content.module.css'
 
 const fullName = profile.name.full
@@ -41,6 +44,9 @@ export default async function ArticlePage({ params }) {
   const a = getArticle(slug)
   if (!a) notFound()
   const project = getProject(a.project)
+  const video = videos.find((v) => v.project === a.project)
+  const post = project && posts.find((p) => p.title.toLowerCase().includes(project.title.toLowerCase()))
+  const more = articles.filter((x) => x.slug !== a.slug).slice(0, 3)
 
   const crumbs = [
     { name: 'Home', href: '/' },
@@ -94,6 +100,39 @@ export default async function ArticlePage({ params }) {
             <a href={project.link} target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnGhost}`}>Source on GitHub ↗</a>
           </div>
         )}
+
+        {video && (
+          <section>
+            <h2 className={styles.h2}>Watch the demo</h2>
+            <JsonLd data={{
+              '@context': 'https://schema.org',
+              '@type': 'VideoObject',
+              name: video.title,
+              description: video.about,
+              thumbnailUrl: `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`,
+              embedUrl: `https://www.youtube.com/embed/${video.id}`,
+              url: `https://www.youtube.com/watch?v=${video.id}`,
+            }} />
+            <div className={styles.card}><YouTubeEmbed id={video.id} title={video.title} /></div>
+          </section>
+        )}
+
+        {post && (
+          <section className={styles.postCard}>
+            <h2 className={styles.h2}>Discussed on LinkedIn</h2>
+            <h3><a href={postUrl(post.urn)} target="_blank" rel="noopener noreferrer">{post.title}</a></h3>
+            <p className={styles.cardSub}>{post.summary}</p>
+            <LinkedInEmbed urn={post.urn} title={post.title} />
+          </section>
+        )}
+
+        <section>
+          <h2 className={styles.h2}>More from the blog</h2>
+          <ul className={styles.prose}>
+            {more.map((x) => <li key={x.slug}><Link href={`/writing/${x.slug}`}>{x.title}</Link></li>)}
+            <li><Link href="/blog">Everything on the blog: articles, LinkedIn posts and videos</Link></li>
+          </ul>
+        </section>
       </article>
     </PageShell>
   )

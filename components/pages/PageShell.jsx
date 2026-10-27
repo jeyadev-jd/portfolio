@@ -14,6 +14,7 @@ export default function PageShell({ children, breadcrumbs = [] }) {
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/projects">Projects</Link>
+          <Link href="/blog">Blog</Link>
           <Link href="/writing">Writing</Link>
           <Link href="/videos">Videos</Link>
           <Link href="/linkedin">LinkedIn</Link>

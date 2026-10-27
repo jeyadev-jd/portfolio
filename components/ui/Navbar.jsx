@@ -23,6 +23,9 @@ const NAV_ITEMS = [
   { label: 'Projects',   idx: 3,            href: '/projects' },
   { label: 'Experience', idx: WORK_EXP_IDX, href: '/about#experience' },
   { label: 'Contact',    idx: FOOTER_IDX,   href: '/about#contact' },
+  { label: 'Blog',                          href: '/blog' },
+  { label: 'Videos',                        href: '/videos' },
+  { label: 'LinkedIn',                      href: '/linkedin' },
 ]
 
 function getIST() {
@@ -107,6 +110,7 @@ export default function Navbar() {
                   href={href}
                   className={styles.navLink}
                   onClick={(e) => {
+                    if (idx === undefined) return  // a page link, not a home section
                     e.preventDefault()
                     const scroller = document.querySelector('main')
                     if (scroller) gsap.to(scroller, {
@@ -142,7 +146,10 @@ export default function Navbar() {
 
       {menuOpen && (
         <div className={styles.mobileMenu}>
-          {NAV_ITEMS.map(({ label, idx }) => (
+          {NAV_ITEMS.filter(i => i.idx === undefined).map(({ label, href }) => (
+            <a key={label} href={href} className={styles.mobileNavLink}>{label}</a>
+          ))}
+          {NAV_ITEMS.filter(i => i.idx !== undefined).map(({ label, idx }) => (
             <button
               key={label}
               className={styles.mobileNavLink}

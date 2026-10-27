@@ -2,6 +2,7 @@ import { SITE_URL } from '@/lib/siteConfig'
 import profile from '@/data/profile.json'
 import { posts, certifications, postUrl, PROFILE_URL, ACTIVITY_URL } from '@/lib/linkedin'
 import PageShell, { JsonLd, breadcrumbSchema } from '@/components/pages/PageShell'
+import { LinkedInEmbed } from '@/components/pages/Embeds'
 import styles from '@/styles/pages/Content.module.css'
 
 const fullName = profile.name.full
@@ -43,8 +44,14 @@ export default function LinkedInPage() {
             itemListElement: posts.map((p, i) => ({
               '@type': 'ListItem',
               position: i + 1,
-              url: postUrl(p.urn),
-              name: p.title,
+              item: {
+                '@type': 'SocialMediaPosting',
+                headline: p.title,
+                text: p.summary,
+                datePublished: p.date,
+                url: postUrl(p.urn),
+                author: { '@id': `${SITE_URL}/#person` },
+              },
             })),
           },
         }}
@@ -63,6 +70,7 @@ export default function LinkedInPage() {
             <h3><a href={postUrl(p.urn)} target="_blank" rel="noopener noreferrer">{p.title}</a></h3>
             <p className={styles.timelineMeta}>{p.date}</p>
             <p className={styles.prose}>{p.summary}</p>
+            <LinkedInEmbed urn={p.urn} title={p.title} />
           </li>
         ))}
       </ol>

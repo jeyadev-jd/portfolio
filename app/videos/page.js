@@ -4,6 +4,7 @@ import profile from '@/data/profile.json'
 import { videos, CHANNEL_URL } from '@/lib/videos'
 import { getProject } from '@/lib/projects'
 import PageShell, { JsonLd, breadcrumbSchema } from '@/components/pages/PageShell'
+import { YouTubeEmbed } from '@/components/pages/Embeds'
 import styles from '@/styles/pages/Content.module.css'
 
 const fullName = profile.name.full
@@ -45,8 +46,14 @@ export default function VideosPage() {
             itemListElement: videos.map((v, i) => ({
               '@type': 'ListItem',
               position: i + 1,
-              url: `https://www.youtube.com/watch?v=${v.id}`,
-              name: v.title,
+              item: {
+                '@type': 'VideoObject',
+                name: v.title,
+                description: v.about,
+                thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`,
+                embedUrl: `https://www.youtube.com/embed/${v.id}`,
+                url: `https://www.youtube.com/watch?v=${v.id}`,
+              },
             })),
           },
         }}
@@ -63,6 +70,7 @@ export default function VideosPage() {
           return (
             <li key={v.id}>
               <div className={styles.card}>
+                <YouTubeEmbed id={v.id} title={v.title} />
                 <div className={styles.cardBody}>
                   <span className={styles.eyebrow}>{v.length}</span>
                   <h2 className={styles.cardTitle}>

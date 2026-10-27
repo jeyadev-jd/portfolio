@@ -289,3 +289,113 @@
   .nav::-webkit-scrollbar { display: none; }
   .nav a { padding: 0.35rem 0; }
 }
+
+/* ─── Embeds (YouTube, LinkedIn): preview first, iframe on tap ─── */
+.embed16x9 {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+.embed16x9 iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.embedFacade {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.embedFacade img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.playBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 3.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #ff0033;
+  color: #fff;
+  font-size: 1.1rem;
+  transition: transform 0.15s;
+}
+.embedFacade:hover .playBtn { transform: scale(1.08); }
+.embedPost { margin-top: 0.75rem; }
+.embedPost iframe {
+  width: 100%;
+  max-width: 34rem;
+  height: 36rem;
+  border: 0;
+  border-radius: 12px;
+  background: var(--surface-white);
+}
+.embedOpen {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  min-height: 44px;
+  border: 1px solid rgba(10, 102, 194, 0.35);
+  border-radius: 999px;
+  background: rgba(10, 102, 194, 0.06);
+  color: #0a66c2;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.liBadge {
+  display: inline-grid;
+  place-items: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 4px;
+  background: #0a66c2;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+/* ─── Blog hub ─── */
+.blogHero {
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1a0800 0%, #3a1600 55%, var(--accent) 140%);
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.blogHero .lead { color: rgba(255, 255, 255, 0.82); }
+.blogHero .h1 { color: #fff; }
+.stats { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+.stat {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.5rem 0 1rem;
+}
+.sectionHead .h2 { margin: 0; }
+.seeAll { font-weight: 600; color: var(--accent-hover); white-space: nowrap; }
+.postCard {
+  padding: 1.1rem 1.2rem;
+  border-radius: 14px;
+  background: var(--surface-white);
+  border-left: 4px solid #0a66c2;
+}
+.postCard h3 { margin: 0 0 0.25rem; font-size: 1.05rem; line-height: 1.3; }
+
+@media (max-width: 767px) {
+  .embedPost iframe { height: 30rem; }
+  .sectionHead { margin-top: 2rem; }
+}

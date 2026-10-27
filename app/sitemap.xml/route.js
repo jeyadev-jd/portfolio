@@ -18,6 +18,7 @@ const pages = [
   { path: '/hire', changefreq: 'monthly', priority: '0.9', images: [] },
   { path: '/projects', changefreq: 'monthly', priority: '0.9', images: [] },
   { path: '/linkedin', changefreq: 'monthly', priority: '0.7', images: [] },
+  { path: '/blog', changefreq: 'weekly', priority: '0.9', images: [] },
   { path: '/videos', changefreq: 'monthly', priority: '0.7', images: [] },
   { path: '/writing', changefreq: 'monthly', priority: '0.8', images: [] },
   ...articles.map((a) => ({ path: `/writing/${a.slug}`, changefreq: 'yearly', priority: '0.8', images: [] })),
