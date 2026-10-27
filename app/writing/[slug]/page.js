@@ -1,3 +1,4 @@
+import { withSeo } from '@/lib/seo'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { SITE_URL } from '@/lib/siteConfig'
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params
   const a = getArticle(slug)
   if (!a) return {}
-  return {
+  return withSeo(`/writing/${a.slug}`, {
     title: a.title,
     description: a.description,
     keywords: [...a.tags, fullName],
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }) {
       publishedTime: a.date,
       authors: [fullName],
     },
-  }
+  })
 }
 
 export default async function ArticlePage({ params }) {

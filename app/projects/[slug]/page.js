@@ -1,3 +1,4 @@
+import { withSeo } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }) {
   if (!p) return {}
   const title = `${p.title}: ${p.subtitle}`
   const description = snippet(p.desc)
-  return {
+  return withSeo(`/projects/${p.slug}`, {
     title,
     description,
     keywords: [p.title, ...p.tech, category(p.type), fullName],
@@ -43,7 +44,7 @@ export async function generateMetadata({ params }) {
       description,
       images: [p.image],
     },
-  }
+  })
 }
 
 export default async function ProjectPage({ params }) {

@@ -1,3 +1,4 @@
+import { withSeo } from '@/lib/seo'
 import Link from 'next/link'
 import { SITE_URL } from '@/lib/siteConfig'
 import profile from '@/data/profile.json'
@@ -10,7 +11,7 @@ const city = profile.location.based.split(',')[0]
 const title = `Hire ${fullName}: ${profile.roles.short} & Full-Stack Developer in ${city}`
 const description = `${fullName} is an ${profile.roles.short} and full-stack developer in ${profile.location.based}, open to internships and roles (${profile.location.availability}). Machine learning, RAG, computer vision, Next.js and MERN projects with source code.`
 
-export const metadata = {
+export const metadata = withSeo('/hire', {
   title,
   description,
   alternates: { canonical: '/hire' },
@@ -22,7 +23,7 @@ export const metadata = {
     description,
     images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: `Hire ${fullName}` }],
   },
-}
+})
 
 const crumbs = [
   { name: 'Home', href: '/' },

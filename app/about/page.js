@@ -1,3 +1,4 @@
+import { withSeo } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import { SITE_URL } from '@/lib/siteConfig'
@@ -11,7 +12,7 @@ const fullName = profile.name.full
 const title = `About ${fullName}: ${profile.roles.short} in ${profile.location.based.split(',')[0]}`
 const description = `${fullName} is an ${profile.roles.short} and full-stack developer from ${profile.location.based}, studying ${profile.education.degree} at ${profile.education.institution}. Experience, skills and education.`
 
-export const metadata = {
+export const metadata = withSeo('/about', {
   title,
   description,
   alternates: { canonical: '/about' },
@@ -23,7 +24,7 @@ export const metadata = {
     description,
     images: [{ url: '/jeyadev-r.jpg', width: 800, height: 800, alt: `${fullName}, ${profile.roles.short}` }],
   },
-}
+})
 
 const crumbs = [
   { name: 'Home', href: '/' },

@@ -1,3 +1,4 @@
+import { withSeo } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import { SITE_URL } from '@/lib/siteConfig'
@@ -10,7 +11,7 @@ const fullName = profile.name.full
 const title = 'Projects: AI, Machine Learning & Full-Stack'
 const description = `${projects.length} projects by ${fullName}, an AI/ML engineer in ${profile.location.based}: machine learning, computer vision, NLP and RAG systems, trading bots, and production full-stack apps, with source code.`
 
-export const metadata = {
+export const metadata = withSeo('/projects', {
   title,
   description,
   alternates: { canonical: '/projects' },
@@ -22,7 +23,7 @@ export const metadata = {
     description,
     images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: `Projects by ${fullName}` }],
   },
-}
+})
 
 const crumbs = [
   { name: 'Home', href: '/' },

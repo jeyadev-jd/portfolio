@@ -1,3 +1,4 @@
+import { withSeo } from '@/lib/seo'
 import { SITE_URL } from '@/lib/siteConfig'
 import profile from '@/data/profile.json'
 import { posts, certifications, postUrl, PROFILE_URL, ACTIVITY_URL } from '@/lib/linkedin'
@@ -9,7 +10,7 @@ const fullName = profile.name.full
 const title = 'LinkedIn Posts, Hackathons and Certifications'
 const description = `Posts, hackathon results, community sessions and certifications from ${fullName}, an AI engineer in ${profile.location.based}, with links to the original LinkedIn posts.`
 
-export const metadata = {
+export const metadata = withSeo('/linkedin', {
   title,
   description,
   alternates: { canonical: '/linkedin' },
@@ -21,7 +22,7 @@ export const metadata = {
     description,
     images: [{ url: '/opengraph-image.png', width: 1200, height: 630, alt: `${fullName} on LinkedIn` }],
   },
-}
+})
 
 const crumbs = [
   { name: 'Home', href: '/' },
