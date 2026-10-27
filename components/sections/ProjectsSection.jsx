@@ -20,14 +20,16 @@ export default function ProjectsSection() {
   const [slideIdx, setSlideIdx] = useState(0)
   // Phones get one screen with a native horizontal card carousel: the pinned
   // 34-screen slider was too heavy to scroll smoothly on touch.
-  const [isPhone, setIsPhone] = useState(false)
+  // null until mounted: the server can't know the device, and building the 34-slide
+  // slider first on phones (then swapping it out) doubled the work during load.
+  const [isPhone, setIsPhone] = useState(null)
 
   useEffect(() => {
     setIsPhone(window.matchMedia('(max-width: 767px)').matches)
   }, [])
 
   useEffect(() => {
-    if (isPhone) return
+    if (isPhone !== false) return
     const section = sectionRef.current
     const track   = trackRef.current
     if (!section || !track) return
@@ -86,6 +88,13 @@ export default function ProjectsSection() {
   }, [isPhone])
 
   if (isPhone) return <MobileProjects />
+  if (isPhone === null) {
+    return (
+      <section className={styles.mSection}>
+        <ProjectList />
+      </section>
+    )
+  }
 
   return (
     <div data-scroll-zone style={{ height: `${PROJECTS.length * 100}vh` }}>
@@ -167,26 +176,7 @@ export default function ProjectsSection() {
           </div>
         </div>
 
-        {/* Full project list for search engines and screen readers. The slider
-            only renders the active slide's text, so this keeps every project's
-            title, description, stack and link in the HTML. Same content as the
-            slides, just not visually repeated. */}
-        <div className="sr-only">
-          <h2>Projects</h2>
-          <Link href="/projects">All projects</Link>
-          <ul>
-            {PROJECTS.map((proj) => (
-              <li key={proj.id}>
-                <h3>{proj.title}: {proj.subtitle}</h3>
-                <p>{proj.type}</p>
-                <p>{proj.desc}</p>
-                <p>Tech stack: {proj.tech.join(', ')}</p>
-                <Link href={`/projects/${slugify(proj.title)}`}>{proj.title} project details</Link>
-                <a href={proj.link}>{proj.title} source</a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ProjectList />
 
         {/* Progress bar */}
         <div className={styles.bottomUI}>
@@ -218,7 +208,7 @@ function MobileProjects() {
                 quality={75}
                 sizes="85vw"
                 className={styles.slideImg}
-                loading={i < 2 ? 'eager' : 'lazy'}
+                loading="lazy"
               />
               <span className={styles.mNum} aria-hidden>{pad(i + 1)}</span>
             </Link>
@@ -238,5 +228,28 @@ function MobileProjects() {
         ))}
       </ul>
     </section>
+  )
+}
+
+// Full project list for search engines and screen readers. The slider only
+// renders the active slide's text, so this keeps every project in the HTML.
+function ProjectList() {
+  return (
+    <div className="sr-only">
+      <h2>Projects</h2>
+      <Link href="/projects">All projects</Link>
+      <ul>
+        {PROJECTS.map((proj) => (
+          <li key={proj.id}>
+            <h3>{proj.title}: {proj.subtitle}</h3>
+            <p>{proj.type}</p>
+            <p>{proj.desc}</p>
+            <p>Tech stack: {proj.tech.join(', ')}</p>
+            <Link href={`/projects/${slugify(proj.title)}`}>{proj.title} project details</Link>
+            <a href={proj.link}>{proj.title} source</a>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
