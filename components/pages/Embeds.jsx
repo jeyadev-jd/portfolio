@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import styles from '@/styles/pages/Content.module.css'
 
-// Embeds load only on tap: a YouTube or LinkedIn iframe pulls about 500 KB-1 MB
-// of third-party script, so a page of them would be slow on phones.
+// The YouTube player loads only on tap: each one pulls about 1 MB of script.
 
 export function YouTubeEmbed({ id, title }) {
   const [on, setOn] = useState(false)
@@ -27,22 +26,16 @@ export function YouTubeEmbed({ id, title }) {
   )
 }
 
+// The full post, with its pictures. loading="lazy" keeps it from downloading until
+// it is scrolled near, so a page of posts stays fast.
 export function LinkedInEmbed({ urn, title }) {
-  const [on, setOn] = useState(false)
-  if (on) {
-    return (
-      <div className={styles.embedPost}>
-        <iframe
-          src={`https://www.linkedin.com/embed/feed/update/urn:li:activity:${urn}`}
-          title={`LinkedIn post: ${title}`}
-          loading="lazy"
-        />
-      </div>
-    )
-  }
   return (
-    <button type="button" className={styles.embedOpen} onClick={() => setOn(true)}>
-      <span className={styles.liBadge} aria-hidden>in</span> Show the LinkedIn post here
-    </button>
+    <div className={styles.embedPost}>
+      <iframe
+        src={`https://www.linkedin.com/embed/feed/update/urn:li:activity:${urn}`}
+        title={`LinkedIn post: ${title}`}
+        loading="lazy"
+      />
+    </div>
   )
 }

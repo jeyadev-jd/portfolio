@@ -78,11 +78,8 @@ export default function BlogPage() {
       />
 
       <header className={styles.blogHero}>
-        <span className={styles.eyebrow}>Blog</span>
-        <h1 className={styles.h1}>Building AI that ships</h1>
-        <p className={styles.lead}>
-          Write-ups of my AI and full-stack projects, updates from LinkedIn and demo videos from YouTube, all in one place.
-        </p>
+        <h1 className={styles.h1}>Blog</h1>
+        <p className={styles.lead}>My articles, LinkedIn posts and YouTube videos.</p>
         <div className={styles.stats}>
           <span className={styles.stat}>{articles.length} articles</span>
           <span className={styles.stat}>{posts.length} LinkedIn posts</span>
@@ -125,7 +122,6 @@ export default function BlogPage() {
           <li key={p.urn} className={styles.postCard}>
             <h3><a href={postUrl(p.urn)} target="_blank" rel="noopener noreferrer">{p.title}</a></h3>
             <p className={styles.timelineMeta}>{p.date}</p>
-            <p className={styles.cardSub}>{p.summary}</p>
             <LinkedInEmbed urn={p.urn} title={p.title} />
           </li>
         ))}
